@@ -1,0 +1,4 @@
+[development]
+dev = true
+no_fee = true
+no_account_validation = true

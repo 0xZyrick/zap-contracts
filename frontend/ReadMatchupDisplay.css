@@ -1,0 +1,383 @@
+/* File: src/components/ReadMatchup/ReadMatchupDisplay.css */
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/*  Read Matchup Display Card */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+.matchup-result {
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 15px 0;
+  background: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+.matchup-result.matchup-red {
+  border-color: #e74c3c;
+  background: rgba(231, 76, 60, 0.08);
+}
+
+.matchup-result.matchup-green {
+  border-color: #27ae60;
+  background: rgba(39, 174, 96, 0.08);
+}
+
+.matchup-result.matchup-gray {
+  border-color: #95a5a6;
+  background: rgba(149, 165, 166, 0.08);
+}
+
+.matchup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.matchup-header h3 {
+  margin: 0;
+  font-size: 1.3em;
+  color: #2c3e50;
+}
+
+.turn-badge {
+  background: #3498db;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/*  Moves Display (Player vs Opponent) */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+.matchup-moves {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  margin: 20px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+}
+
+.player-move,
+.opponent-move {
+  flex: 1;
+  text-align: center;
+}
+
+.player-move .label,
+.opponent-move .label {
+  display: block;
+  font-size: 0.85em;
+  color: #7f8c8d;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.move-name {
+  display: block;
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #2c3e50;
+  line-height: 1.5;
+}
+
+.vs {
+  font-size: 1.2em;
+  color: #95a5a6;
+  font-weight: bold;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/*  Result Box */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+.matchup-result-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.result-red {
+  background: rgba(231, 76, 60, 0.15);
+  border-left: 4px solid #e74c3c;
+}
+
+.result-green {
+  background: rgba(39, 174, 96, 0.15);
+  border-left: 4px solid #27ae60;
+}
+
+.result-gray {
+  background: rgba(149, 165, 166, 0.15);
+  border-left: 4px solid #95a5a6;
+}
+
+.result-icon {
+  font-size: 2em;
+  line-height: 1;
+  min-width: 50px;
+}
+
+.result-text h4 {
+  margin: 0 0 5px 0;
+  font-size: 1.1em;
+  color: #2c3e50;
+}
+
+.result-text p {
+  margin: 0;
+  color: #7f8c8d;
+  font-size: 0.95em;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/*  Turn Submission Form */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+.submit-turn-with-read {
+  background: white;
+  border: 1px solid #ecf0f1;
+  border-radius: 12px;
+  padding: 25px;
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.submit-turn-with-read h3 {
+  margin: 0 0 25px 0;
+  color: #2c3e50;
+  font-size: 1.4em;
+}
+
+.form-section {
+  margin-bottom: 25px;
+}
+
+.form-section label {
+  display: block;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  font-size: 0.95em;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/*  Action Buttons */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  flex: 1;
+  min-width: 100px;
+  padding: 12px 16px;
+  border: 2px solid #ecf0f1;
+  border-radius: 8px;
+  background: white;
+  color: #2c3e50;
+  font-size: 0.95em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover:not(:disabled) {
+  border-color: #3498db;
+  background: rgba(52, 152, 219, 0.05);
+}
+
+.action-btn.active {
+  border-color: #3498db;
+  background: #3498db;
+  color: white;
+}
+
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/*  Read Selection Buttons */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+.read-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.read-btn {
+  padding: 15px;
+  border: 2px solid #ecf0f1;
+  border-radius: 8px;
+  background: white;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.read-btn:hover:not(:disabled) {
+  border-color: #9b59b6;
+  background: rgba(155, 89, 182, 0.05);
+}
+
+.read-btn.active {
+  border-color: #9b59b6;
+  background: rgba(155, 89, 182, 0.1);
+  box-shadow: 0 2px 6px rgba(155, 89, 182, 0.2);
+}
+
+.read-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.read-name {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 6px;
+  font-size: 1em;
+}
+
+.read-matchups {
+  display: flex;
+  gap: 15px;
+  font-size: 0.85em;
+}
+
+.read-matchups small {
+  color: #7f8c8d;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/*  Submit Button */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 15px;
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #229954;
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+.submit-btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/*  Read History */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+.read-history {
+  padding: 20px;
+}
+
+.read-history h3 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.read-history.loading,
+.read-history.empty,
+.read-history.error {
+  text-align: center;
+  padding: 40px 20px;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+.read-history.error {
+  color: #e74c3c;
+  background: rgba(231, 76, 60, 0.1);
+  border-radius: 8px;
+}
+
+.history-list {
+  margin-top: 20px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/*  Responsive Design */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .matchup-moves {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .vs {
+    transform: rotate(90deg);
+  }
+
+  .submit-turn-with-read {
+    padding: 15px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .action-btn {
+    min-width: auto;
+  }
+
+  .matchup-result {
+    padding: 15px;
+  }
+
+  .matchup-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .matchup-result-box {
+    flex-direction: column;
+  }
+
+  .result-icon {
+    min-width: auto;
+  }
+
+  .matchup-header h3 {
+    font-size: 1.1em;
+  }
+
+  .move-name {
+    font-size: 1.1em;
+  }
+}
