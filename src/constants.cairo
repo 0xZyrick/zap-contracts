@@ -66,7 +66,7 @@ pub const COIN_LOSS:         u32 = 4;
 pub const COIN_PER_GOAL:     u32 = 3;
 pub const COIN_CLEAN_SHEET:  u32 = 5;
 // Starting coins on registration
-pub const STARTING_COINS:    u32 = 80;
+pub const STARTING_COINS:    u32 = 0;
 pub const STARTING_REP:      u32 = 50;
 
 // ── Success rate bounds (basis-points, 10000 = 100%) ─────────────────────────
@@ -97,6 +97,27 @@ pub const MM_AT_20: i64 =  100; pub const MM_AT_21: i64 =  400; pub const MM_AT_
 pub const MM_DF_00: i64 =  500; pub const MM_DF_01: i64 = -600; pub const MM_DF_02: i64 =  200;
 pub const MM_DF_10: i64 = -400; pub const MM_DF_11: i64 =  700; pub const MM_DF_12: i64 =  100;
 pub const MM_DF_20: i64 =  200; pub const MM_DF_21: i64 =  100; pub const MM_DF_22: i64 =  600;
+
+// ── Daily Mission Types ───────────────────────────────────────────────────────
+pub const MISSION_WIN_MATCH:   u8 = 0;
+pub const MISSION_SCORE_GOAL:  u8 = 1;
+pub const MISSION_CLEAN_SHEET: u8 = 2;
+
+// ── Mission Targets & Rewards (per day) ───────────────────────────────────────
+pub const MISSION_WIN_TARGET:   u32 = 3;    // Win 3 matches
+pub const MISSION_WIN_REWARD:   u32 = 30;   // 30 coins
+pub const MISSION_GOAL_TARGET:  u32 = 2;    // Score 2 goals
+pub const MISSION_GOAL_REWARD:  u32 = 20;   // 20 coins
+pub const MISSION_SHEET_TARGET: u32 = 1;    // 1 clean sheet
+pub const MISSION_SHEET_REWARD: u32 = 25;   // 25 coins
+
+// ── Leaderboard ──────────────────────────────────────────────────────────────
+pub const LEADERBOARD_SIZE: u8 = 100;  // Top 100 players
+
+// ── Counter IDs ───────────────────────────────────────────────────────────────
+pub const CTR_SESSION_ID:  felt252 = 'session_id';
+pub const CTR_LISTING_ID:  felt252 = 'listing_id';
+pub const CTR_VRF_REQ_ID:  felt252 = 'vrf_request_id';
 
 // ── Pragma VRF addresses ──────────────────────────────────────────────────────
 // Update these when deploying to a different network.

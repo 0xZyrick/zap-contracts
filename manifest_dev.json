@@ -33,8 +33,8 @@
   },
   "contracts": [
     {
-      "address": "0x2197d405078aaad4daaf6bf46e1d79f57f136a317eb8964827d922c51c1a630",
-      "class_hash": "0x41fc75011892845bf5123a4839238574cbd19fa80ab09d03a9b6c3d2c165a23",
+      "address": "0x23e88c62532acdf91cf6bc758a61a475a1c8d47e8922f405f36ccaccffbf81c",
+      "class_hash": "0x500b8b093b7bb71ebe8a00cee069bea67af554c4928bd7d13582f6959d3d21c",
       "init_calldata": [],
       "tag": "dojo_starter-game_actions",
       "selector": "0x24d97e4b398efb8606eb7d1983d8371db791c77269346df8c1aaae41b37df7c",
@@ -49,8 +49,8 @@
       ]
     },
     {
-      "address": "0x7abced22a7efdec47ac2b773fd3c3581d820b916d8b1737ab1e875dc2044683",
-      "class_hash": "0x40b1569a5a09c8f5a8883ecaec7e0212845031ede689cec1225e415cf634b72",
+      "address": "0x545313330ecd472ffa98963b9ab380c2fa00ddd7a6334fce8fa650de52da8be",
+      "class_hash": "0x794eb22ec8610312dfbe58b85834075ef6a818e8b21b6f0ea806003b7e8143c",
       "init_calldata": [],
       "tag": "dojo_starter-market_actions",
       "selector": "0x1c1e8e588cd6485a9a3af3d3af72d0323290051e2ec0ed3f14e0ba35ac5c80b",
@@ -64,8 +64,8 @@
       ]
     },
     {
-      "address": "0x3d8ae91fd74320a5cd5bc0c0228e0928a47bc2ef6639ced73290c7e933751c7",
-      "class_hash": "0x4365520102f96bfe5cd64e025ca64e6b54d995a366346cb8c90a9bb5d2a9bfa",
+      "address": "0x54aea31ed3404d3ee184875deeaf099caff9fc1e8f66b86ee04f87bf2391c2",
+      "class_hash": "0x4002b9c5190bd6e57996de3402e58360ad1e6cbcef91905eb6328a857af039e",
       "init_calldata": [],
       "tag": "dojo_starter-player_actions",
       "selector": "0x44ba4cef872e8f115d4cf2dce27074eefb301c9b5b2d3e33214f6070e6e6665",
@@ -76,12 +76,60 @@
         "unequip_starter",
         "rename_club",
         "mint_card_to",
+        "claim_daily_mission",
         "upgrade"
       ]
     }
   ],
   "libraries": [],
   "models": [
+    {
+      "members": [
+        {
+          "name": "wallet",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "key": true
+        },
+        {
+          "name": "mission_slot",
+          "type": "core::integer::u8",
+          "key": true
+        },
+        {
+          "name": "day",
+          "type": "core::integer::u32",
+          "key": false
+        },
+        {
+          "name": "mission_type",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "progress",
+          "type": "core::integer::u32",
+          "key": false
+        },
+        {
+          "name": "target",
+          "type": "core::integer::u32",
+          "key": false
+        },
+        {
+          "name": "reward",
+          "type": "core::integer::u32",
+          "key": false
+        },
+        {
+          "name": "claimed",
+          "type": "core::bool",
+          "key": false
+        }
+      ],
+      "class_hash": "0x228cf75a36becd54f740ec30f9a3d048e069c1759d38d1ddf469295efd46d14",
+      "tag": "dojo_starter-DailyMission",
+      "selector": "0x31e491e192643b59be430b7fa1ea9ae35943a0e779fa14f5b49b40d045042c0"
+    },
     {
       "members": [
         {
@@ -162,6 +210,43 @@
       "class_hash": "0x502342657b2b4010bacab737f2b702457683847cd134df39042c048159aa9a",
       "tag": "dojo_starter-GlobalCounter",
       "selector": "0x59302d20991c4f6a2b2d582568de6e11e75e69550bdf53c16217257e7b3aff3"
+    },
+    {
+      "members": [
+        {
+          "name": "rank",
+          "type": "core::integer::u8",
+          "key": true
+        },
+        {
+          "name": "wallet",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "key": false
+        },
+        {
+          "name": "club_name",
+          "type": "core::felt252",
+          "key": false
+        },
+        {
+          "name": "rep",
+          "type": "core::integer::u32",
+          "key": false
+        },
+        {
+          "name": "wins",
+          "type": "core::integer::u32",
+          "key": false
+        },
+        {
+          "name": "best_streak",
+          "type": "core::integer::u32",
+          "key": false
+        }
+      ],
+      "class_hash": "0x3db0cdf9b322a365f699015ea724029c14ae295340fb216fce70882b1f310ec",
+      "tag": "dojo_starter-GlobalLeaderboard",
+      "selector": "0x77f29e87f3e70443cf5692a269ebdd6f826177461edab335425f66756f15197"
     },
     {
       "members": [
@@ -685,6 +770,33 @@
           "key": true
         },
         {
+          "name": "mission_slot",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "mission_type",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "reward",
+          "type": "core::integer::u32",
+          "key": false
+        }
+      ],
+      "class_hash": "0x5aedbebd6994f840ae31d3d99668788e77a3384fc6bb2b1d0dd3c74ea8ac91c",
+      "tag": "dojo_starter-MissionClaimed",
+      "selector": "0x7b41da0df57c37393dd13b77a1d555899538112b4c1c3002b7eb5cf1e977ca5"
+    },
+    {
+      "members": [
+        {
+          "name": "wallet",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "key": true
+        },
+        {
           "name": "club_name",
           "type": "core::felt252",
           "key": false
@@ -693,6 +805,43 @@
       "class_hash": "0x410e18690d352caca03b931c107594a43eca1ae9121976a062648b3adc80f74",
       "tag": "dojo_starter-PlayerRegistered",
       "selector": "0x4d4b252a12a92f852af047cbee66abba9f029f66d1195ae0926437fd975b9e"
+    },
+    {
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64",
+          "key": true
+        },
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "situation",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "player_read",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "opponent_read",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "matchup_result",
+          "type": "core::integer::u8",
+          "key": false
+        }
+      ],
+      "class_hash": "0x306d93f65b6f5afa5e1c9a13f5168c909dc8f826c93dadb8cad330b5e69e99b",
+      "tag": "dojo_starter-ReadMatchupResolved",
+      "selector": "0x2f20c73dac5cda2c303d6305be3a2fdf516291973d4792028446d4240d17c0"
     },
     {
       "members": [
@@ -2645,6 +2794,74 @@
     },
     {
       "type": "struct",
+      "name": "dojo_starter::models::DailyMission",
+      "members": [
+        {
+          "name": "wallet",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "mission_slot",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "day",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "mission_type",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "progress",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "target",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "reward",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "claimed",
+          "type": "core::bool"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "dojo_starter::models::DailyMissionValue",
+      "members": [
+        {
+          "name": "day",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "mission_type",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "progress",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "target",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "reward",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "claimed",
+          "type": "core::bool"
+        }
+      ]
+    },
+    {
+      "type": "struct",
       "name": "dojo_starter::models::FormationConfig",
       "members": [
         {
@@ -2760,6 +2977,62 @@
         {
           "name": "value",
           "type": "core::integer::u64"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "dojo_starter::models::GlobalLeaderboard",
+      "members": [
+        {
+          "name": "rank",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "wallet",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "club_name",
+          "type": "core::felt252"
+        },
+        {
+          "name": "rep",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "wins",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "best_streak",
+          "type": "core::integer::u32"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "dojo_starter::models::GlobalLeaderboardValue",
+      "members": [
+        {
+          "name": "wallet",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "club_name",
+          "type": "core::felt252"
+        },
+        {
+          "name": "rep",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "wins",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "best_streak",
+          "type": "core::integer::u32"
         }
       ]
     },
@@ -3181,6 +3454,12 @@
     },
     {
       "type": "event",
+      "name": "dojo_starter::models::m_DailyMission::Event",
+      "kind": "enum",
+      "variants": []
+    },
+    {
+      "type": "event",
       "name": "dojo_starter::models::m_FormationConfig::Event",
       "kind": "enum",
       "variants": []
@@ -3194,6 +3473,12 @@
     {
       "type": "event",
       "name": "dojo_starter::models::m_GlobalCounter::Event",
+      "kind": "enum",
+      "variants": []
+    },
+    {
+      "type": "event",
+      "name": "dojo_starter::models::m_GlobalLeaderboard::Event",
       "kind": "enum",
       "variants": []
     },
@@ -3477,6 +3762,62 @@
     },
     {
       "type": "struct",
+      "name": "dojo_starter::systems::game_actions::ReadMatchupResolved",
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "situation",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "player_read",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "opponent_read",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "matchup_result",
+          "type": "core::integer::u8"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "dojo_starter::systems::game_actions::ReadMatchupResolvedValue",
+      "members": [
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "situation",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "player_read",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "opponent_read",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "matchup_result",
+          "type": "core::integer::u8"
+        }
+      ]
+    },
+    {
+      "type": "struct",
       "name": "dojo_starter::systems::game_actions::RewardClaimed",
       "members": [
         {
@@ -3654,6 +3995,12 @@
     {
       "type": "event",
       "name": "dojo_starter::systems::game_actions::e_HalftimeReached::Event",
+      "kind": "enum",
+      "variants": []
+    },
+    {
+      "type": "event",
+      "name": "dojo_starter::systems::game_actions::e_ReadMatchupResolved::Event",
       "kind": "enum",
       "variants": []
     },
@@ -4142,6 +4489,58 @@
           ],
           "outputs": [],
           "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "claim_daily_mission",
+          "inputs": [
+            {
+              "name": "mission_slot",
+              "type": "core::integer::u8"
+            }
+          ],
+          "outputs": [],
+          "state_mutability": "external"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "dojo_starter::systems::player_actions::MissionClaimed",
+      "members": [
+        {
+          "name": "wallet",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "mission_slot",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "mission_type",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "reward",
+          "type": "core::integer::u32"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "dojo_starter::systems::player_actions::MissionClaimedValue",
+      "members": [
+        {
+          "name": "mission_slot",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "mission_type",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "reward",
+          "type": "core::integer::u32"
         }
       ]
     },
@@ -4210,6 +4609,12 @@
     {
       "type": "event",
       "name": "dojo_starter::systems::player_actions::e_FormationChanged::Event",
+      "kind": "enum",
+      "variants": []
+    },
+    {
+      "type": "event",
+      "name": "dojo_starter::systems::player_actions::e_MissionClaimed::Event",
       "kind": "enum",
       "variants": []
     },

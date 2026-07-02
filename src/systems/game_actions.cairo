@@ -451,8 +451,7 @@ pub mod game_actions {
             let (turn, _, _, sh, sa, status, _) = unpack_state(session.state);
             assert!(status == STATUS_HALFTIME, "Not at halftime");
 
-            // Second half: reset turn counter to 0 relative position but keep
-            // half=2 so we know where we are.  Turn counter continues from 6 → 12.
+            // Second half keeps the absolute turn counter and marks half=2.
             session.state = pack_state(
                 turn, 2_u8, PHASE_MIDFIELD, sh, sa, STATUS_ACTIVE, NO_PENDING_ACTION
             );
@@ -505,6 +504,9 @@ pub mod game_actions {
             reg.coins += coins_gained;
             world.write_model(@reg);
 
+            // ── Update daily mission progress only ──
+            self.update_daily_missions(player, outcome, score_h, score_a);
+
             world.emit_event(@RewardClaimed {
                 session_id, player,
                 rep_gained, rep_lost, coins_gained,
@@ -543,6 +545,83 @@ pub mod game_actions {
     impl InternalImpl of InternalTrait {
         fn world_default(self: @ContractState) -> dojo::world::WorldStorage {
             self.world(@"dojo_starter")
+        }
+
+        fn update_daily_missions(
+            ref self: ContractState,
+            player: starknet::ContractAddress,
+            outcome: u8,
+            score_h: u8,
+            score_a: u8,
+        ) {
+            use dojo_starter::constants::{
+                MISSION_WIN_MATCH, MISSION_SCORE_GOAL, MISSION_CLEAN_SHEET,
+                MISSION_WIN_TARGET, MISSION_GOAL_TARGET, MISSION_SHEET_TARGET,
+            };
+            let mut world = self.world_default();
+            let today: u32 = (get_block_timestamp() / 86400).try_into().unwrap();
+
+            // Update mission slot 0: Win Match
+            let mut mission0: dojo_starter::models::DailyMission = world.read_model((player, 0_u8));
+            if mission0.day != today {
+                mission0 = dojo_starter::models::DailyMission {
+                    wallet: player,
+                    mission_slot: 0,
+                    day: today,
+                    mission_type: MISSION_WIN_MATCH,
+                    progress: 0,
+                    target: MISSION_WIN_TARGET,
+                    reward: 30,
+                    claimed: false,
+                };
+            }
+            if mission0.mission_type == MISSION_WIN_MATCH && outcome == 2 && mission0.progress < MISSION_WIN_TARGET {
+                mission0.progress += 1;
+            }
+            world.write_model(@mission0);
+
+            // Update mission slot 1: Score Goals
+            let mut mission1: dojo_starter::models::DailyMission = world.read_model((player, 1_u8));
+            if mission1.day != today {
+                mission1 = dojo_starter::models::DailyMission {
+                    wallet: player,
+                    mission_slot: 1,
+                    day: today,
+                    mission_type: MISSION_SCORE_GOAL,
+                    progress: 0,
+                    target: MISSION_GOAL_TARGET,
+                    reward: 20,
+                    claimed: false,
+                };
+            }
+            if mission1.mission_type == MISSION_SCORE_GOAL && mission1.progress < MISSION_GOAL_TARGET {
+                let goals_scored = score_h.into();
+                if mission1.progress + goals_scored <= MISSION_GOAL_TARGET {
+                    mission1.progress += goals_scored;
+                } else {
+                    mission1.progress = MISSION_GOAL_TARGET;
+                }
+            }
+            world.write_model(@mission1);
+
+            // Update mission slot 2: Clean Sheet
+            let mut mission2: dojo_starter::models::DailyMission = world.read_model((player, 2_u8));
+            if mission2.day != today {
+                mission2 = dojo_starter::models::DailyMission {
+                    wallet: player,
+                    mission_slot: 2,
+                    day: today,
+                    mission_type: MISSION_CLEAN_SHEET,
+                    progress: 0,
+                    target: MISSION_SHEET_TARGET,
+                    reward: 25,
+                    claimed: false,
+                };
+            }
+            if mission2.mission_type == MISSION_CLEAN_SHEET && score_a == 0 && mission2.progress < MISSION_SHEET_TARGET {
+                mission2.progress += 1;
+            }
+            world.write_model(@mission2);
         }
     }
 }

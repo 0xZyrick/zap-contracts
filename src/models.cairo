@@ -123,7 +123,7 @@ pub struct FormationConfig {
 //  5.  GameSession  (storage-optimised — 6 slots, was 12)
 //
 //  state u64 bit layout:
-//   bits  0- 7  turn_number    (0-20)
+//   bits  0- 7  turn_number    (0-20, 10 per half)
 //   bits  8-15  half           (1-2)
 //   bits 16-23  current_phase  (0=MF 1=ATK 2=DEF)
 //   bits 24-31  score_h        (0-9)
@@ -231,4 +231,54 @@ pub struct TournamentParticipant {
     pub seed:       u8,    // bracket seeding position
     pub wins:       u8,
     pub eliminated: bool,
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  11.  GlobalLeaderboard
+//  Top 100 players ranked by reputation. Updated on each game completion.
+//  Indexed by Torii for efficient leaderboard queries.
+// ─────────────────────────────────────────────────────────────────────────────
+#[derive(Copy, Drop, Serde, Debug)]
+#[dojo::model]
+pub struct GlobalLeaderboard {
+    /// Rank (1–100). Primary key for top players.
+    #[key]
+    pub rank:        u8,
+
+    pub wallet:      ContractAddress,
+    pub club_name:   felt252,
+    pub rep:         u32,
+    pub wins:        u32,
+    pub best_streak: u32,
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  12.  DailyMission
+//  Daily missions reset at UTC midnight (on-chain timestamp).
+//  Each player gets 3 missions per day with individual progress tracking.
+// ─────────────────────────────────────────────────────────────────────────────
+#[derive(Copy, Drop, Serde, Debug)]
+#[dojo::model]
+pub struct DailyMission {
+    /// Composite key: player wallet + mission_slot (0-2)
+    #[key]
+    pub wallet:       ContractAddress,
+    #[key]
+    pub mission_slot: u8,
+
+    /// UTC day (seconds / 86400) — resets daily
+    pub day:          u32,
+
+    /// Mission type: 0=win_match, 1=score_goal, 2=clean_sheet
+    pub mission_type: u8,
+
+    /// Progress / target (e.g., 3 wins, 2 goals, 1 clean sheet)
+    pub progress:     u32,
+    pub target:       u32,
+
+    /// Reward in coins on completion
+    pub reward:       u32,
+
+    /// Whether mission is claimed
+    pub claimed:      bool,
 }

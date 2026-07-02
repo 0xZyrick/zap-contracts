@@ -1,3 +1,6 @@
 world_address = "0x07f1e392145f072211a0b4d3ca0fa10ee1970c2aa2049206aa9f7eff40a1d232"
 rpc = "https://api.cartridge.gg/x/zapfc/katana"
 start_block = 0
+
+[indexing]
+controllers = true

@@ -21,6 +21,8 @@ pub trait IPlayerActions<T> {
     /// Mints a card to the given player.  In production, gated behind a coin
     /// purchase; here exposed directly for easy testing / airdrop.
     fn mint_card_to(ref self: T, receiver: starknet::ContractAddress, card_id: u32);
+    /// Claim a completed daily mission reward (coins).
+    fn claim_daily_mission(ref self: T, mission_slot: u8);
 }
 
 // ── Events ────────────────────────────────────────────────────────────────────
@@ -60,10 +62,20 @@ pub struct CardMinted {
     pub rarity:   u8,
 }
 
+#[derive(Copy, Drop, Serde)]
+#[dojo::event]
+pub struct MissionClaimed {
+    #[key]
+    pub wallet:        starknet::ContractAddress,
+    pub mission_slot:  u8,
+    pub mission_type:  u8,
+    pub reward:        u32,
+}
+
 // ── Contract ──────────────────────────────────────────────────────────────────
 #[dojo::contract]
 pub mod player_actions {
-    use super::{IPlayerActions, PlayerRegistered, FormationChanged, StarterEquipped, CardMinted};
+    use super::{IPlayerActions, PlayerRegistered, FormationChanged, StarterEquipped, CardMinted, MissionClaimed};
 
     use starknet::{ContractAddress, get_caller_address};
     use dojo::model::ModelStorage;
@@ -261,6 +273,32 @@ pub mod player_actions {
             });
 
             world.emit_event(@CardMinted { card_id, receiver, role, rarity });
+        }
+
+        // ── claim_daily_mission ────────────────────────────────────────────────
+        fn claim_daily_mission(ref self: ContractState, mission_slot: u8) {
+            let mut world = self.world_default();
+            let wallet = get_caller_address();
+
+            assert!(mission_slot < 3, "Invalid mission slot");
+
+            let mut mission: dojo_starter::models::DailyMission = world.read_model((wallet, mission_slot));
+            assert!(!mission.claimed, "Already claimed");
+            assert!(mission.progress >= mission.target, "Mission not complete");
+
+            // Mark claimed and credit coins
+            mission.claimed = true;
+            world.write_model(@mission);
+
+            let mut reg: dojo_starter::models::PlayerRegistry = world.read_model(wallet);
+            reg.coins += mission.reward;
+            world.write_model(@reg);
+
+            world.emit_event(@MissionClaimed {
+                wallet, mission_slot,
+                mission_type: mission.mission_type,
+                reward: mission.reward,
+            });
         }
     }
 

@@ -30,7 +30,7 @@ use dojo_starter::constants::{
 //  GameSession state packing / unpacking
 //
 //  state u64 bit layout:
-//   bits  0- 7  turn_number    (0-20)
+//   bits  0- 7  turn_number    (0-20, 10 per half)
 //   bits  8-15  half           (1-2)
 //   bits 16-23  current_phase  (0-2)
 //   bits 24-31  score_h        (0-9)
