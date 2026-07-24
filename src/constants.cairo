@@ -145,3 +145,21 @@ pub const CPU_NAMES: [felt252; 7] = [
     'El Maestro',  // 6 — ~1480
 ];
 pub const CPU_POWERS: [u32; 7] = [5, 50, 300, 560, 1000, 1350, 1480];
+
+// ── PVP lobby status ────────────────────────────────────────────────────────
+pub const PVP_LOBBY_OPEN:      u8 = 0;  // waiting for an opponent to join
+pub const PVP_LOBBY_ACTIVE:    u8 = 1;  // match underway — see PvpSession.state for turn-by-turn status
+pub const PVP_LOBBY_CANCELLED: u8 = 2;
+
+// ── PVP per-turn commit/reveal sub-phase ────────────────────────────────────
+pub const PVP_TURN_STAGE_COMMIT: u8 = 0;  // waiting on both players' commit_turn
+pub const PVP_TURN_STAGE_REVEAL: u8 = 1;  // waiting on both players' reveal_turn
+
+// ── PVP timing windows (seconds) ─────────────────────────────────────────────
+// Per-turn, not per-match — a full match can run up to TURNS_PER_HALF * 2
+// turns, each needing a commit window and a reveal window. Tune to taste.
+pub const PVP_COMMIT_WINDOW_SECS: u64 = 60;
+pub const PVP_REVEAL_WINDOW_SECS: u64 = 60;
+
+// ── PVP counter ID ────────────────────────────────────────────────────────────
+pub const CTR_PVP_SESSION: felt252 = 'pvp_session_ctr';

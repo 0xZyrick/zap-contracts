@@ -89,14 +89,14 @@ pub mod market_actions {
     use dojo::model::ModelStorage;
     use dojo::event::EventStorage;
 
-    use dojo_starter::models::{
+    use zapfc_contracts::models::{
         PlayerRegistry, SquadNFT, MarketListing, FormationConfig,
     };
-    use dojo_starter::constants::{
+    use zapfc_contracts::constants::{
         ROLE_STRIKER, ROLE_MIDFIELDER, ROLE_DEFENDER,
         CTR_LISTING, NO_CARD,
     };
-    use dojo_starter::utils::{compute_team_stats, next_id};
+    use zapfc_contracts::utils::{compute_team_stats, next_id};
 
     // The shop address — a well-known zero-address sentinel.
     // In a production setup this would be a treasury multisig.
@@ -305,7 +305,7 @@ pub mod market_actions {
     #[generate_trait]
     impl InternalImpl of InternalTrait {
         fn world_default(self: @ContractState) -> dojo::world::WorldStorage {
-            self.world(@"dojo_starter")
+            self.world(@"zapfc")
         }
     }
 

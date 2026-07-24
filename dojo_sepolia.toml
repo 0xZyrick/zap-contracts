@@ -1,37 +1,50 @@
 [world]
 name = "zapfc"
 description = "ZAP FC on-chain football game"
-seed = "zapfc"
+seed = "zapfc_v2"
 
 [namespace]
-default = "dojo_starter"
+default = "zapfc"
 
 [env]
-rpc_url         = "https://api.cartridge.gg/x/zapfc/katana"
-account_address = "0x6677fe62ee39c7b07401f754138502bab7fac99d2d3c5d37df7d1c6fab10819"
-private_key     = "0x3e3979c1ed728490308054fe357a9f49cf67f80f9721f44cc57235129e090f4"
+rpc_url         = "https://api.cartridge.gg/x/starknet/sepolia"
+account_address = "0x03fa5e8B77c2B075075448ad44A8eB24F727b9EAdBE1dd3c880B4647f8F9Aa47"
+private_key     = "REPLACE_WITH_SEPOLIA_PRIVATE_KEY"
 
 [writers]
-"dojo_starter-PlayerRegistry" = ["dojo_starter-player_actions","dojo_starter-game_actions","dojo_starter-market_actions"]
-"dojo_starter-FormationConfig" = ["dojo_starter-player_actions","dojo_starter-game_actions","dojo_starter-market_actions"]
-"dojo_starter-SquadNFT" = ["dojo_starter-player_actions","dojo_starter-market_actions"]
-"dojo_starter-GameSession" = ["dojo_starter-game_actions"]
-"dojo_starter-VRFRequest" = ["dojo_starter-game_actions"]
-"dojo_starter-DailyMission" = ["dojo_starter-game_actions","dojo_starter-player_actions"]
-"dojo_starter-GlobalCounter" = ["dojo_starter-game_actions","dojo_starter-market_actions"]
-"dojo_starter-MarketListing" = ["dojo_starter-market_actions"]
-"dojo_starter-PlayerRegistered" = ["dojo_starter-player_actions"]
-"dojo_starter-FormationChanged" = ["dojo_starter-player_actions"]
-"dojo_starter-StarterEquipped" = ["dojo_starter-player_actions"]
-"dojo_starter-CardMinted" = ["dojo_starter-player_actions"]
-"dojo_starter-GameStarted" = ["dojo_starter-game_actions"]
-"dojo_starter-TurnResolved" = ["dojo_starter-game_actions"]
-"dojo_starter-ReadMatchupResolved" = ["dojo_starter-game_actions"]
-"dojo_starter-HalftimeReached" = ["dojo_starter-game_actions"]
-"dojo_starter-GameFinished" = ["dojo_starter-game_actions"]
-"dojo_starter-RewardClaimed" = ["dojo_starter-game_actions"]
-"dojo_starter-CardListed" = ["dojo_starter-market_actions"]
-"dojo_starter-CardSold" = ["dojo_starter-market_actions"]
-"dojo_starter-ListingCancelled" = ["dojo_starter-market_actions"]
-"dojo_starter-CardPurchasedFromShop" = ["dojo_starter-market_actions"]
-"dojo_starter-CardSoldToShop" = ["dojo_starter-market_actions"]
+"zapfc-PlayerRegistry" = ["zapfc-player_actions","zapfc-game_actions","zapfc-market_actions","zapfc-pvp_actions"]
+"zapfc-FormationConfig" = ["zapfc-player_actions","zapfc-game_actions","zapfc-market_actions"]
+"zapfc-SquadNFT" = ["zapfc-player_actions","zapfc-market_actions"]
+"zapfc-GameSession" = ["zapfc-game_actions"]
+"zapfc-VRFRequest" = ["zapfc-game_actions"]
+"zapfc-DailyMission" = ["zapfc-game_actions","zapfc-player_actions"]
+"zapfc-GlobalCounter" = ["zapfc-game_actions","zapfc-market_actions","zapfc-pvp_actions"]
+"zapfc-PvpSession" = ["zapfc-pvp_actions"]
+"zapfc-PvpTurnCommit" = ["zapfc-pvp_actions"]
+"zapfc-PvpTurnReveal" = ["zapfc-pvp_actions"]
+"zapfc-PvpRoomCreated" = ["zapfc-pvp_actions"]
+"zapfc-PvpMatchStarted" = ["zapfc-pvp_actions"]
+"zapfc-PvpRoomCancelled" = ["zapfc-pvp_actions"]
+"zapfc-PvpTurnCommitted" = ["zapfc-pvp_actions"]
+"zapfc-PvpTurnRevealed" = ["zapfc-pvp_actions"]
+"zapfc-PvpTurnResolved" = ["zapfc-pvp_actions"]
+"zapfc-PvpReadMatchupResolved" = ["zapfc-pvp_actions"]
+"zapfc-PvpHalftimeReached" = ["zapfc-pvp_actions"]
+"zapfc-PvpMatchFinished" = ["zapfc-pvp_actions"]
+"zapfc-PvpRewardClaimed" = ["zapfc-pvp_actions"]
+"zapfc-MarketListing" = ["zapfc-market_actions"]
+"zapfc-PlayerRegistered" = ["zapfc-player_actions"]
+"zapfc-FormationChanged" = ["zapfc-player_actions"]
+"zapfc-StarterEquipped" = ["zapfc-player_actions"]
+"zapfc-CardMinted" = ["zapfc-player_actions"]
+"zapfc-GameStarted" = ["zapfc-game_actions"]
+"zapfc-TurnResolved" = ["zapfc-game_actions"]
+"zapfc-ReadMatchupResolved" = ["zapfc-game_actions"]
+"zapfc-HalftimeReached" = ["zapfc-game_actions"]
+"zapfc-GameFinished" = ["zapfc-game_actions"]
+"zapfc-RewardClaimed" = ["zapfc-game_actions"]
+"zapfc-CardListed" = ["zapfc-market_actions"]
+"zapfc-CardSold" = ["zapfc-market_actions"]
+"zapfc-ListingCancelled" = ["zapfc-market_actions"]
+"zapfc-CardPurchasedFromShop" = ["zapfc-market_actions"]
+"zapfc-CardSoldToShop" = ["zapfc-market_actions"]

@@ -1,5 +1,5 @@
-world_address = "0x07f1e392145f072211a0b4d3ca0fa10ee1970c2aa2049206aa9f7eff40a1d232"
-rpc = "https://api.cartridge.gg/x/zapfc/katana"
+world_address = "0x0099d648eb94e5560bdefdcc8cc765b0399bed4df27be1fe8837567ad628f333"
+rpc = "https://api.cartridge.gg/x/starknet/sepolia" 
 start_block = 0
 
 [indexing]

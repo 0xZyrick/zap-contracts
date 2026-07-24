@@ -1,2 +1,7 @@
 target
 dojo_mainnet.toml
+dojo_*.local.toml
+.env
+.env.*
+!.env.example
+torii.log

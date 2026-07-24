@@ -40,7 +40,7 @@ pub struct FormationChanged {
     #[key]
     pub wallet:       starknet::ContractAddress,
     pub formation_id: felt252,
-    pub team_stats:   dojo_starter::models::StatBlock,
+    pub team_stats:   zapfc_contracts::models::StatBlock,
 }
 
 #[derive(Copy, Drop, Serde)]
@@ -81,15 +81,15 @@ pub mod player_actions {
     use dojo::model::ModelStorage;
     use dojo::event::EventStorage;
 
-    use dojo_starter::models::{PlayerRegistry, SquadNFT, FormationConfig, StarterSlots};
-    use dojo_starter::constants::{
+    use zapfc_contracts::models::{PlayerRegistry, SquadNFT, FormationConfig, StarterSlots};
+    use zapfc_contracts::constants::{
         STARTING_COINS, STARTING_REP, NO_CARD,
         ROLE_STRIKER, ROLE_MIDFIELDER, ROLE_DEFENDER,
         FORMATION_PRESS_433, FORMATION_CONTROL_433, FORMATION_PIVOT_4231,
         FORMATION_CLASSIC_442, FORMATION_DIAMOND_41212, FORMATION_WIDE_352,
         FORMATION_STORM_343, FORMATION_LOCK_532, FORMATION_LOW_541,
     };
-    use dojo_starter::utils::compute_team_stats;
+    use zapfc_contracts::utils::compute_team_stats;
 
     // ── Predefined card catalogue (mirrors MCARDS in ZapFC.jsx) ──────────────
     // Called during mint to look up card metadata without storing a separate
@@ -282,7 +282,7 @@ pub mod player_actions {
 
             assert!(mission_slot < 3, "Invalid mission slot");
 
-            let mut mission: dojo_starter::models::DailyMission = world.read_model((wallet, mission_slot));
+            let mut mission: zapfc_contracts::models::DailyMission = world.read_model((wallet, mission_slot));
             assert!(!mission.claimed, "Already claimed");
             assert!(mission.progress >= mission.target, "Mission not complete");
 
@@ -290,7 +290,7 @@ pub mod player_actions {
             mission.claimed = true;
             world.write_model(@mission);
 
-            let mut reg: dojo_starter::models::PlayerRegistry = world.read_model(wallet);
+            let mut reg: zapfc_contracts::models::PlayerRegistry = world.read_model(wallet);
             reg.coins += mission.reward;
             world.write_model(@reg);
 
@@ -305,7 +305,7 @@ pub mod player_actions {
     #[generate_trait]
     impl InternalImpl of InternalTrait {
         fn world_default(self: @ContractState) -> dojo::world::WorldStorage {
-            self.world(@"dojo_starter")
+            self.world(@"zapfc")
         }
     }
 }

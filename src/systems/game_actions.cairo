@@ -38,7 +38,7 @@ pub trait IGameActions<T> {
     fn continue_after_halftime(ref self: T, session_id: u64);
     fn claim_game_reward(ref self: T, session_id: u64);
     fn dev_resolve_turn(ref self: T, session_id: u64, action_idx: u8, seed: u128);
-    fn get_session(self: @T, session_id: u64) -> dojo_starter::models::GameSession;
+    fn get_session(self: @T, session_id: u64) -> zapfc_contracts::models::GameSession;
 }
 
 // ── Events ────────────────────────────────────────────────────────────────────
@@ -51,7 +51,7 @@ pub struct GameStarted {
     pub player:       starknet::ContractAddress,
     pub cpu_name:     felt252,   // stored here, not in model
     pub cpu_power:    u32,
-    pub player_stats: dojo_starter::models::StatBlock,
+    pub player_stats: zapfc_contracts::models::StatBlock,
 }
 
 #[derive(Copy, Drop, Serde)]
@@ -134,15 +134,15 @@ pub mod game_actions {
     use dojo::model::ModelStorage;
     use dojo::event::EventStorage;
 
-    use dojo_starter::models::{PlayerRegistry, FormationConfig, GameSession, VRFRequest};
-    use dojo_starter::constants::{
+    use zapfc_contracts::models::{PlayerRegistry, FormationConfig, GameSession, VRFRequest};
+    use zapfc_contracts::constants::{
         PHASE_MIDFIELD, STATUS_ACTIVE, STATUS_HALFTIME, STATUS_FINISHED,
         NO_PENDING_ACTION, TURNS_PER_HALF,
         CTR_SESSION, CTR_VRF_REQ,
         PRAGMA_VRF_SEPOLIA,
         PHASE_ATTACK, PHASE_DEFEND,
     };
-    use dojo_starter::utils::{
+    use zapfc_contracts::utils::{
         pack_state, unpack_state, pack_stats, unpack_stats,
         cpu_profile, cpu_stats, player_phase_stat, cpu_phase_stat,
         next_phase, match_outcome,
@@ -150,10 +150,10 @@ pub mod game_actions {
         cpu_action_from_seed, resolution_roll_from_seed,
         next_id, STATUS_CLAIMED,
     };
-    use dojo_starter::reads::{
+    use zapfc_contracts::reads::{
         eval_read_matchup,
     };
-    use dojo_starter::constants::{
+    use zapfc_contracts::constants::{
         SITUATION_MIDFIELD_ATTACKING, SITUATION_ATTACK, SITUATION_DEFEND,
     };
 
@@ -536,7 +536,7 @@ pub mod game_actions {
         }
 
         // ── view ──────────────────────────────────────────────────────────────
-        fn get_session(self: @ContractState, session_id: u64) -> dojo_starter::models::GameSession {
+        fn get_session(self: @ContractState, session_id: u64) -> zapfc_contracts::models::GameSession {
             self.world_default().read_model(session_id)
         }
     }
@@ -544,7 +544,7 @@ pub mod game_actions {
     #[generate_trait]
     impl InternalImpl of InternalTrait {
         fn world_default(self: @ContractState) -> dojo::world::WorldStorage {
-            self.world(@"dojo_starter")
+            self.world(@"zapfc")
         }
 
         fn update_daily_missions(
@@ -554,7 +554,7 @@ pub mod game_actions {
             score_h: u8,
             score_a: u8,
         ) {
-            use dojo_starter::constants::{
+            use zapfc_contracts::constants::{
                 MISSION_WIN_MATCH, MISSION_SCORE_GOAL, MISSION_CLEAN_SHEET,
                 MISSION_WIN_TARGET, MISSION_GOAL_TARGET, MISSION_SHEET_TARGET,
             };
@@ -562,9 +562,9 @@ pub mod game_actions {
             let today: u32 = (get_block_timestamp() / 86400).try_into().unwrap();
 
             // Update mission slot 0: Win Match
-            let mut mission0: dojo_starter::models::DailyMission = world.read_model((player, 0_u8));
+            let mut mission0: zapfc_contracts::models::DailyMission = world.read_model((player, 0_u8));
             if mission0.day != today {
-                mission0 = dojo_starter::models::DailyMission {
+                mission0 = zapfc_contracts::models::DailyMission {
                     wallet: player,
                     mission_slot: 0,
                     day: today,
@@ -581,9 +581,9 @@ pub mod game_actions {
             world.write_model(@mission0);
 
             // Update mission slot 1: Score Goals
-            let mut mission1: dojo_starter::models::DailyMission = world.read_model((player, 1_u8));
+            let mut mission1: zapfc_contracts::models::DailyMission = world.read_model((player, 1_u8));
             if mission1.day != today {
-                mission1 = dojo_starter::models::DailyMission {
+                mission1 = zapfc_contracts::models::DailyMission {
                     wallet: player,
                     mission_slot: 1,
                     day: today,
@@ -605,9 +605,9 @@ pub mod game_actions {
             world.write_model(@mission1);
 
             // Update mission slot 2: Clean Sheet
-            let mut mission2: dojo_starter::models::DailyMission = world.read_model((player, 2_u8));
+            let mut mission2: zapfc_contracts::models::DailyMission = world.read_model((player, 2_u8));
             if mission2.day != today {
-                mission2 = dojo_starter::models::DailyMission {
+                mission2 = zapfc_contracts::models::DailyMission {
                     wallet: player,
                     mission_slot: 2,
                     day: today,

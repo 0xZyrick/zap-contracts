@@ -6,13 +6,13 @@ mod tests {
         ContractDef, ContractDefTrait, NamespaceDef, TestResource, WorldStorageTestTrait,
         spawn_test_world,
     };
-    use dojo_starter::models::{Direction, Moves, Position, m_Moves, m_Position};
-    use dojo_starter::systems::actions::{IActionsDispatcher, IActionsDispatcherTrait, actions};
+    use zapfc_contracts::models::{Direction, Moves, Position, m_Moves, m_Position};
+    use zapfc_contracts::systems::actions::{IActionsDispatcher, IActionsDispatcherTrait, actions};
     use starknet::ContractAddress;
 
     fn namespace_def() -> NamespaceDef {
         let ndef = NamespaceDef {
-            namespace: "dojo_starter",
+            namespace: "zapfc",
             resources: [
                 TestResource::Model(m_Position::TEST_CLASS_HASH),
                 TestResource::Model(m_Moves::TEST_CLASS_HASH),
@@ -27,8 +27,8 @@ mod tests {
 
     fn contract_defs() -> Span<ContractDef> {
         [
-            ContractDefTrait::new(@"dojo_starter", @"actions")
-                .with_writer_of([dojo::utils::bytearray_hash(@"dojo_starter")].span())
+            ContractDefTrait::new(@"zapfc", @"actions")
+                .with_writer_of([dojo::utils::bytearray_hash(@"zapfc")].span())
         ]
             .span()
     }

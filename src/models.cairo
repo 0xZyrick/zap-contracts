@@ -282,3 +282,76 @@ pub struct DailyMission {
     /// Whether mission is claimed
     pub claimed:      bool,
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  13.  PvpSession
+//  Two-human mirror of GameSession: same 10-turns-per-half / 2-half / phase
+//  cycle, same `state` packing (see pack_state/unpack_state in utils.cairo —
+//  the pending_action byte is unused here, actions live in PvpTurnCommit /
+//  PvpTurnReveal instead, keyed per-turn so every turn gets a fresh
+//  commit-reveal round).
+//
+//  `home` always occupies the role the single-player "player" occupied
+//  (attacks during MIDFIELD/ATTACK), `away` always occupies the role the
+//  CPU occupied (attacks during DEFEND) — same convention resolve_turn()
+//  already uses, just with a real reveal instead of a VRF seed.
+//
+//  Lifecycle:
+//    lobby_status: OPEN -> ACTIVE  (-> CANCELLED if creator backs out early)
+//    once ACTIVE, `state`'s own status byte drives the match itself, exactly
+//    like GameSession: ACTIVE -> HALFTIME -> ACTIVE -> FINISHED -> CLAIMED.
+// ─────────────────────────────────────────────────────────────────────────────
+#[derive(Copy, Drop, Serde, Debug)]
+#[dojo::model]
+pub struct PvpSession {
+    #[key]
+    pub session_id: u64,
+
+    pub home:          ContractAddress,
+    pub away:          ContractAddress,  // meaningless until lobby_status == ACTIVE
+    pub lobby_status:  u8,               // PVP_LOBBY_*
+    pub state:         u64,              // packed exactly like GameSession.state
+    pub turn_stage:    u8,               // PVP_TURN_STAGE_* — commit or reveal sub-phase
+    pub turn_deadline: u64,              // deadline for the current turn_stage
+    pub created_at:    u64,
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  14.  PvpTurnCommit
+//  Keyed per-turn so every turn gets a clean commit slot with no reset logic.
+//  Stores ONLY the hash — never the action or salt — until reveal.
+//  commit_hash = poseidon_hash(action, salt, player_address, session_id, turn_number)
+// ─────────────────────────────────────────────────────────────────────────────
+#[derive(Copy, Drop, Serde, Debug)]
+#[dojo::model]
+pub struct PvpTurnCommit {
+    #[key]
+    pub session_id:  u64,
+    #[key]
+    pub turn_number: u8,
+    #[key]
+    pub player:      ContractAddress,
+
+    pub committed:    bool,      // existence flag — mirrors `registered`/`minted`
+    pub commit_hash:  felt252,
+    pub submitted_at: u64,
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  15.  PvpTurnReveal
+// ─────────────────────────────────────────────────────────────────────────────
+#[derive(Copy, Drop, Serde, Debug)]
+#[dojo::model]
+pub struct PvpTurnReveal {
+    #[key]
+    pub session_id:  u64,
+    #[key]
+    pub turn_number: u8,
+    #[key]
+    pub player:      ContractAddress,
+
+    pub revealed:    bool,       // existence flag
+    pub action:      u8,         // 0-2, same encoding as GameSession pending_action
+    pub salt:        felt252,
+    pub revealed_at: u64,
+}

@@ -1,8 +1,8 @@
 {
   "world": {
     "class_hash": "0x1f77dfd5c4065f5233d8e46ba41753d496df6b264aafe33323b49433edc330f",
-    "address": "0x7f1e392145f072211a0b4d3ca0fa10ee1970c2aa2049206aa9f7eff40a1d232",
-    "seed": "zapfc",
+    "address": "0x99d648eb94e5560bdefdcc8cc765b0399bed4df27be1fe8837567ad628f333",
+    "seed": "zapfc_v2",
     "name": "zapfc",
     "entrypoints": [
       "uuid",
@@ -33,11 +33,11 @@
   },
   "contracts": [
     {
-      "address": "0x1703beb846a6bef7fc07a43313708efd2a6e8fd72bc1634600d04e05bd08f05",
-      "class_hash": "0x3b69896501a26319b81d50588d5feed91b09fdd6b1ee556e969ffe475f97ecd",
+      "address": "0x34e10b9de32efa9c7aacb23a4987c3755c9d6e2966b2840543b18d7ceb80413",
+      "class_hash": "0x6c5e403e5723ac330e07c95f851cfe57db53435b5fda59cf139de83acf44409",
       "init_calldata": [],
-      "tag": "dojo_starter-game_actions",
-      "selector": "0x24d97e4b398efb8606eb7d1983d8371db791c77269346df8c1aaae41b37df7c",
+      "tag": "zapfc-game_actions",
+      "selector": "0xbf411d311bdda8dc7c210309c354bbd056c1aad3591fd6165c7fa3c9650ef8",
       "systems": [
         "start_game",
         "submit_turn_action",
@@ -49,11 +49,11 @@
       ]
     },
     {
-      "address": "0x7e4975eeb6ed474c67678d7b1de37a1cea660a91b1dfd6ccc2440a4643ce755",
-      "class_hash": "0x794eb22ec8610312dfbe58b85834075ef6a818e8b21b6f0ea806003b7e8143c",
+      "address": "0x3a4e1b378d9de52028cd7770cef8956f2dba86548cd4eabf94aebe607949dd1",
+      "class_hash": "0xa10639fb1fa9c46af59843b08a29b5f28e66937cb7daa845403017d77c6a1d",
       "init_calldata": [],
-      "tag": "dojo_starter-market_actions",
-      "selector": "0x1c1e8e588cd6485a9a3af3d3af72d0323290051e2ec0ed3f14e0ba35ac5c80b",
+      "tag": "zapfc-market_actions",
+      "selector": "0x488f46bad535d3569a5a56af2c71d0f39b68559a84693f3b3c1c0eb0e17df44",
       "systems": [
         "list_card",
         "buy_card",
@@ -64,11 +64,11 @@
       ]
     },
     {
-      "address": "0x5e96865837b48f3d7b1b599812eb61ec528e9d0fe18898368a7328661e380dc",
-      "class_hash": "0x4002b9c5190bd6e57996de3402e58360ad1e6cbcef91905eb6328a857af039e",
+      "address": "0x5b4df3975b458271e690b8823b8de83b72ffd36b3b1f41ba399d67b890a5c9f",
+      "class_hash": "0x26a7d960160f4ebe323351b1185ddef5f07dedac104448c865c4a38aef52101",
       "init_calldata": [],
-      "tag": "dojo_starter-player_actions",
-      "selector": "0x44ba4cef872e8f115d4cf2dce27074eefb301c9b5b2d3e33214f6070e6e6665",
+      "tag": "zapfc-player_actions",
+      "selector": "0x36f83beed1127027799ab5ce8bd1ce2bccb9d9b28d6df47f0058782f2ef3318",
       "systems": [
         "register_player",
         "set_formation",
@@ -77,6 +77,23 @@
         "rename_club",
         "mint_card_to",
         "claim_daily_mission",
+        "upgrade"
+      ]
+    },
+    {
+      "address": "0x3bc5d46fec7b12c142186126d4e0fc31e9f24a0d9afbcbdf7ced5ea399bee9f",
+      "class_hash": "0x195c226133ee039405fea62d0b8b79a703c4fbc749e102a20860f27976d58b",
+      "init_calldata": [],
+      "tag": "zapfc-pvp_actions",
+      "selector": "0x1dac5d49690b150e3b3d1192cb11da324500c81ebb75e4383e517c0d1619ed",
+      "systems": [
+        "create_room",
+        "join_room",
+        "cancel_room",
+        "commit_turn",
+        "reveal_turn",
+        "continue_after_halftime",
+        "claim_timeout",
         "upgrade"
       ]
     }
@@ -126,9 +143,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x228cf75a36becd54f740ec30f9a3d048e069c1759d38d1ddf469295efd46d14",
-      "tag": "dojo_starter-DailyMission",
-      "selector": "0x31e491e192643b59be430b7fa1ea9ae35943a0e779fa14f5b49b40d045042c0"
+      "class_hash": "0x2b76acfa834e4532fcc84049743a28a637814dd5670c199ca1d27499573c1d2",
+      "tag": "zapfc-DailyMission",
+      "selector": "0x530915f5b4d133dddb477bac2830d371af4c1e8639a49ded639e153c302112"
     },
     {
       "members": [
@@ -144,18 +161,18 @@
         },
         {
           "name": "starters",
-          "type": "dojo_starter::models::StarterSlots",
+          "type": "zapfc_contracts::models::StarterSlots",
           "key": false
         },
         {
           "name": "team_stats",
-          "type": "dojo_starter::models::StatBlock",
+          "type": "zapfc_contracts::models::StatBlock",
           "key": false
         }
       ],
-      "class_hash": "0x798f48294a342805056741b3bb5fc7781b54eca5c656f8a5ef22e20f4122f8f",
-      "tag": "dojo_starter-FormationConfig",
-      "selector": "0x6e6931fbb553634324fe127aac4c5a9d7487e9d1fdd11223198506fc074e008"
+      "class_hash": "0x1788898eadd4605eed66068b72219c4801618d8728325914afc4964f62f7ae6",
+      "tag": "zapfc-FormationConfig",
+      "selector": "0x2cdede0f9312dc06bdc8258dc224e28e17b6e733823e6a44b35585bf63eb4e5"
     },
     {
       "members": [
@@ -190,9 +207,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x57cfbaecca90d3e7366a8b2b1e955fd706afe0e13acf027a65bdd8a46880a9b",
-      "tag": "dojo_starter-GameSession",
-      "selector": "0x74d95db9ecc34a64190e46cc67f0e974e12e37003fff5f8e16f25971f6ef12"
+      "class_hash": "0x5b9407f94a3f95168393e8a738fc1a1b990de515ddda12f36e49a41d6a693fd",
+      "tag": "zapfc-GameSession",
+      "selector": "0x54b450296a944e81b687a53c09f74d278195389f86ab6e6f4c29a9e7fa376cf"
     },
     {
       "members": [
@@ -207,9 +224,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x502342657b2b4010bacab737f2b702457683847cd134df39042c048159aa9a",
-      "tag": "dojo_starter-GlobalCounter",
-      "selector": "0x59302d20991c4f6a2b2d582568de6e11e75e69550bdf53c16217257e7b3aff3"
+      "class_hash": "0xd7dcb2a1456e7942805ba669f4409865e43ade63d0bf4562243304d00b7c39",
+      "tag": "zapfc-GlobalCounter",
+      "selector": "0x2beaf5bf7136a02d3a727de4d01b23b590ea74162beffb6b705ed327d0532b6"
     },
     {
       "members": [
@@ -244,9 +261,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x3db0cdf9b322a365f699015ea724029c14ae295340fb216fce70882b1f310ec",
-      "tag": "dojo_starter-GlobalLeaderboard",
-      "selector": "0x77f29e87f3e70443cf5692a269ebdd6f826177461edab335425f66756f15197"
+      "class_hash": "0x3877ee959339fd6b23c76d8d72820f75701875809ec9f2c9be47ba3c778f825",
+      "tag": "zapfc-GlobalLeaderboard",
+      "selector": "0x16b09ee0e14e4c7a28fd62b436e99b2f1b0ddf83c8822161fd47cd80279cd32"
     },
     {
       "members": [
@@ -276,9 +293,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x113feca6a84ea55c9c264bac6483b7db2d60d69219777015f9d718f9988062b",
-      "tag": "dojo_starter-MarketListing",
-      "selector": "0x6ab9692f117129a56dec2adf1549522248cca079c3f34d71e66f27cc4dc7212"
+      "class_hash": "0xd3a4f5580fa17b7216e939d798b5fb6201f9016443ca1271b31fd2047df2a8",
+      "tag": "zapfc-MarketListing",
+      "selector": "0x4a295bae4c897f4fcd96e542827eb3f24a935af4d44cde5cdb335ee99b5e3ac"
     },
     {
       "members": [
@@ -348,9 +365,135 @@
           "key": false
         }
       ],
-      "class_hash": "0x7c346c7bc63bcb7a657adebd53b1681041611a3220b72a00fa72573db31d0d4",
-      "tag": "dojo_starter-PlayerRegistry",
-      "selector": "0x268d25dfc3f78f6e1362805f05c280ad0983c8f6acf51e533a7d5ff4985a48b"
+      "class_hash": "0x45d9e509e012b61daafa20818eb65ac730b79a9a79bacdab32fad40e0d02094",
+      "tag": "zapfc-PlayerRegistry",
+      "selector": "0x389aa8b68b99b8ea61e38b051bfe04b1505061af9733ebc2c728a6d9284ad1d"
+    },
+    {
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64",
+          "key": true
+        },
+        {
+          "name": "home",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "key": false
+        },
+        {
+          "name": "away",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "key": false
+        },
+        {
+          "name": "lobby_status",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "state",
+          "type": "core::integer::u64",
+          "key": false
+        },
+        {
+          "name": "turn_stage",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "turn_deadline",
+          "type": "core::integer::u64",
+          "key": false
+        },
+        {
+          "name": "created_at",
+          "type": "core::integer::u64",
+          "key": false
+        }
+      ],
+      "class_hash": "0x142dd9c2425092f109766d20b3d4c32ae6abb8d8f2d1f939e51363fb84a4ce8",
+      "tag": "zapfc-PvpSession",
+      "selector": "0x1de77520b49ea37697de34d896266fa1aece34ba31cdfe68d08906a4c7498d5"
+    },
+    {
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64",
+          "key": true
+        },
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8",
+          "key": true
+        },
+        {
+          "name": "player",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "key": true
+        },
+        {
+          "name": "committed",
+          "type": "core::bool",
+          "key": false
+        },
+        {
+          "name": "commit_hash",
+          "type": "core::felt252",
+          "key": false
+        },
+        {
+          "name": "submitted_at",
+          "type": "core::integer::u64",
+          "key": false
+        }
+      ],
+      "class_hash": "0x6ffb8ffca46e01c4e254aecdf65afb8ccf65b0018c8d55a417b0d455f7bd638",
+      "tag": "zapfc-PvpTurnCommit",
+      "selector": "0x7b1a22bff540f7d76fc5ef3494646f4f10e4efbc22b32801310711754c9258c"
+    },
+    {
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64",
+          "key": true
+        },
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8",
+          "key": true
+        },
+        {
+          "name": "player",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "key": true
+        },
+        {
+          "name": "revealed",
+          "type": "core::bool",
+          "key": false
+        },
+        {
+          "name": "action",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "salt",
+          "type": "core::felt252",
+          "key": false
+        },
+        {
+          "name": "revealed_at",
+          "type": "core::integer::u64",
+          "key": false
+        }
+      ],
+      "class_hash": "0x40f8859936c58e3cfa67deffe8d3955643accd44a39ace2b0587ee8845b7aca",
+      "tag": "zapfc-PvpTurnReveal",
+      "selector": "0x5fc0d0c4c8e0c96b79d23386c32b21514e41b9eca04d9cfee01773664ea654d"
     },
     {
       "members": [
@@ -405,9 +548,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x564c774bc8f4c061f787fd1aa9013e429cbd5b2f89334a6715cfbeb84e4d544",
-      "tag": "dojo_starter-SquadNFT",
-      "selector": "0x606b4e80fd69b52faf7a9bfbdfa420987172bfc654f958c8ad2f8f3e428ce50"
+      "class_hash": "0x5222bcb6b7474cf3ba43ec1f0b7fd9c8926dc82895d9ad5ad3334c6da96a740",
+      "tag": "zapfc-SquadNFT",
+      "selector": "0x4b53856ff95590fa8afac6cfc96dd577ff2d12f7a64025739e529506be12364"
     },
     {
       "members": [
@@ -442,9 +585,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x261aa569590337fbe593c0654027938e2bafa29151b16857d0e0f708704b8b2",
-      "tag": "dojo_starter-TournamentBracket",
-      "selector": "0x27223555690ca234017eff0b04e47c2b91f6e038ca7d3095d3ffceef65a089a"
+      "class_hash": "0x555b63b09c52e28ada90434bbcad773cce3d886b2da68ed9cba59e49ef75d68",
+      "tag": "zapfc-TournamentBracket",
+      "selector": "0xc78545361a0c7a320aec039f1d26b9022672b7465ebb4523ccb15e49707cbc"
     },
     {
       "members": [
@@ -474,9 +617,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x4161265a42783d57a4fabb0d5925f02cd0b7c8c09ae14bb295a17531bed527",
-      "tag": "dojo_starter-TournamentParticipant",
-      "selector": "0x2244d05a3525cbf8a0768e091a98b7940f8d983d1ffb6de84cdef23b69e7087"
+      "class_hash": "0x19f205905666c4bfbe1e4eb9d9d03cbec5cc975d0ded856280925d9f3926f48",
+      "tag": "zapfc-TournamentParticipant",
+      "selector": "0x5696d2776c37702d43bef1d7302b561a07889f38e7637323566a30de1878c14"
     },
     {
       "members": [
@@ -496,9 +639,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x7d63e21487972c4e1fc00112330eb8e59601c43cb0de6db031c9828dba3bd09",
-      "tag": "dojo_starter-VRFRequest",
-      "selector": "0x6acbff304ff408b991f4f4463daf8482ce71ed8e5f1b6a1685099ebc3925745"
+      "class_hash": "0x532893e6d0e71e6a7cc22d8b2c3ef36cd9efd29bf9b5fe634533a7be474fad1",
+      "tag": "zapfc-VRFRequest",
+      "selector": "0x647bae339ac5bc0cac4063b9b7ddbe6fb854b9e0cea0bf2395192bff2487d82"
     }
   ],
   "events": [
@@ -525,9 +668,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x3ebfb1427161a76a10b42d9b87b9791455a7878cd1b818da768e023b8638a29",
-      "tag": "dojo_starter-CardListed",
-      "selector": "0x7be8a5898fb997400004c257c3bbb7a029754cc83ac1c5d4fee42dc9b455841"
+      "class_hash": "0x5febcc0cdde49d01efa74aa6dd945812d79d20050d6876edc271d90fc8981e1",
+      "tag": "zapfc-CardListed",
+      "selector": "0x5ab0c3aa75b408bf2029fa7fa9dd7ab8a96702050180ea305e28c5b46af4065"
     },
     {
       "members": [
@@ -552,9 +695,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x67e446beeb556459d5c1f75efff69df69ee403f6be111e8e0163e26f7442a89",
-      "tag": "dojo_starter-CardMinted",
-      "selector": "0x7a91e9cbd136f40a54732b70262ae812f48f6c1e5ff21d5cd821f97c1efd1d4"
+      "class_hash": "0x4e7233b16874dd67e5c0a4e5bbb9079cdaca006fe3c2ac169df708c8bf4f75c",
+      "tag": "zapfc-CardMinted",
+      "selector": "0x517be5dcf87a1a87360790893317c8508fceeaadaad1fc727c27392b396a79f"
     },
     {
       "members": [
@@ -574,9 +717,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x420acd3d8246f8173d2c1beee5626f4237ba2caf1011aac976467cec87f2a22",
-      "tag": "dojo_starter-CardPurchasedFromShop",
-      "selector": "0x9c47b13f18505d1f748f2557524af5fc3b4a6eb104108ea24a2049fe9a90de"
+      "class_hash": "0x6c40dece1389b54343282262daef0fb1003fc6eeaf437a54842c6d419383004",
+      "tag": "zapfc-CardPurchasedFromShop",
+      "selector": "0x6142acb27519528d9b42ea566b5dff9e1bf0b4943c7b7f68ac194486963c580"
     },
     {
       "members": [
@@ -606,9 +749,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x1cbc9049a366cce31d45f948653a8d5d1c9d71b0c5aa00a3919fe8111afcf70",
-      "tag": "dojo_starter-CardSold",
-      "selector": "0x427945fed7c7ed8480649e2edc9c9c42fe93f584763eb55244a9f042d233785"
+      "class_hash": "0x24442e4c707c1d01ecf7f1ede0f3434d4caa9bef5f2a871fd89c06d7e13471d",
+      "tag": "zapfc-CardSold",
+      "selector": "0x58b43edb477f9ba489201018d182fc5264e311db32516abff0a94c89fa277d9"
     },
     {
       "members": [
@@ -628,9 +771,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x52832058d4ab9976f6fe7041ce96471cc630aab6ae1d47f466ead4d26588cbc",
-      "tag": "dojo_starter-CardSoldToShop",
-      "selector": "0x2e721ca8465b534af42fe68cc6c5d7a92e8755824c393d9f8d3d80fa0403cfa"
+      "class_hash": "0x677e9e19894a41f704606627aaca81f7aeb011ff32e203d357c7d29fd87bb55",
+      "tag": "zapfc-CardSoldToShop",
+      "selector": "0x6d4c7ab3813a93a1b31b411c28a705dd91ac0cdb36df0012ae32f155fca1801"
     },
     {
       "members": [
@@ -646,13 +789,13 @@
         },
         {
           "name": "team_stats",
-          "type": "dojo_starter::models::StatBlock",
+          "type": "zapfc_contracts::models::StatBlock",
           "key": false
         }
       ],
-      "class_hash": "0x6b8c54ae0c3f03fb8d6c7d6bc375d4dadb7ac2ac049c8808b1cd9e8c374b665",
-      "tag": "dojo_starter-FormationChanged",
-      "selector": "0x76ae98682a53076a272ee441755f345a693f5ee8ace9f3eb06de7e5ad11989c"
+      "class_hash": "0x6386330c739de6a11c77d19b910ed12cef870c4201bfc44002dbde06c9973d7",
+      "tag": "zapfc-FormationChanged",
+      "selector": "0x7bc886b5a4506f92e9b1423af5ae6dced3e304a9966a196cdb9f5093e962516"
     },
     {
       "members": [
@@ -682,9 +825,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x4415badd75c1e35048df123609a5322d0394ae7225fd747641bc0b5429f602f",
-      "tag": "dojo_starter-GameFinished",
-      "selector": "0x5bb106cfd4c00aa56ccbbe6cd78c6e00b4db6f2882b7c4af550baabc450e3af"
+      "class_hash": "0x10fadfc03b31617c0f974afefdcb9710be14ef3c24193ae0e399ca9c7ed1be2",
+      "tag": "zapfc-GameFinished",
+      "selector": "0x2d873459a8069e3e13c1e934a1adb22f665e5b23731e384a3ec3056f07e8a03"
     },
     {
       "members": [
@@ -710,13 +853,13 @@
         },
         {
           "name": "player_stats",
-          "type": "dojo_starter::models::StatBlock",
+          "type": "zapfc_contracts::models::StatBlock",
           "key": false
         }
       ],
-      "class_hash": "0x6415c302f4302f1566c10f6477d70ddff39c974bf0553548939728b9cb47297",
-      "tag": "dojo_starter-GameStarted",
-      "selector": "0x415973a9b7be5bf3d4b0f81fe8c0d273800a913c4061c1ce6f647edbf2dc0e3"
+      "class_hash": "0x70e9a9b5d42101855ceb8a3e1c3c243deb222c6f5aea62224c4815d3d2e4ff9",
+      "tag": "zapfc-GameStarted",
+      "selector": "0x53246e4005c424cc714cd8d828012ead8d9b9fa0aaf8d4a3697bb6e9c0a5663"
     },
     {
       "members": [
@@ -736,9 +879,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x4bcd829cff51b2816da145094349c7054d36b013e3ba004ee1d403b0d254b1b",
-      "tag": "dojo_starter-HalftimeReached",
-      "selector": "0x7a7f24ab47b78b959a34524c940d92228a02637ee76aee5415904646cb994fc"
+      "class_hash": "0x4b1a1e70a05358aed950ff9a3acda9672db0b0e59064c3005cf8efd260aa2c4",
+      "tag": "zapfc-HalftimeReached",
+      "selector": "0x7340822238d8801e585ea05834a1bf22619029ddd89f51ae5a4219f44a2780d"
     },
     {
       "members": [
@@ -758,9 +901,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x18d5aaa8fdfb807003b492e6355f41aa8a835c45ed02ceea99cc0d8043cfdcd",
-      "tag": "dojo_starter-ListingCancelled",
-      "selector": "0x4738512131c2ec7ce0618d2fb6517af195df8ddf7fc25b868ea3a1e44955a97"
+      "class_hash": "0x4c415e78bb0639f154941400b8e6bd66fa1b7243f84f61d55f32a316a4494b3",
+      "tag": "zapfc-ListingCancelled",
+      "selector": "0x3ef4b75da1b63174f034fed6283a09292b90f42390f6693bffff530a66e96c7"
     },
     {
       "members": [
@@ -785,9 +928,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x5aedbebd6994f840ae31d3d99668788e77a3384fc6bb2b1d0dd3c74ea8ac91c",
-      "tag": "dojo_starter-MissionClaimed",
-      "selector": "0x7b41da0df57c37393dd13b77a1d555899538112b4c1c3002b7eb5cf1e977ca5"
+      "class_hash": "0x57132437b1a42f1399658fc62c950ba17675a9c3dad191104a45c3686ef02ec",
+      "tag": "zapfc-MissionClaimed",
+      "selector": "0x37788b42526ba44e060ddb4d9ba65e8adea33d9ca7756ce58580832f3802385"
     },
     {
       "members": [
@@ -802,9 +945,95 @@
           "key": false
         }
       ],
-      "class_hash": "0x410e18690d352caca03b931c107594a43eca1ae9121976a062648b3adc80f74",
-      "tag": "dojo_starter-PlayerRegistered",
-      "selector": "0x4d4b252a12a92f852af047cbee66abba9f029f66d1195ae0926437fd975b9e"
+      "class_hash": "0x4c9e51c9d72acf33f027e3f145d3c469c8ecab4c1b4e5501fa6334a082bbbe",
+      "tag": "zapfc-PlayerRegistered",
+      "selector": "0x444256c868243410db3351bbfd0cf1ff594b3ec356fe1b8c39d61141c7bd04d"
+    },
+    {
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64",
+          "key": true
+        },
+        {
+          "name": "score_h",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "score_a",
+          "type": "core::integer::u8",
+          "key": false
+        }
+      ],
+      "class_hash": "0x5820482982650be2ad8d7db3c08460fa1f1cb43fa776c64fa812c800d37c58e",
+      "tag": "zapfc-PvpHalftimeReached",
+      "selector": "0xe0fd4c7fffdc0f65a58e734228423283499ee6e1cadfc498e73a3d83f8f87d"
+    },
+    {
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64",
+          "key": true
+        },
+        {
+          "name": "home",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "key": true
+        },
+        {
+          "name": "away",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "key": false
+        },
+        {
+          "name": "score_h",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "score_a",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "outcome",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "forfeited",
+          "type": "core::bool",
+          "key": false
+        }
+      ],
+      "class_hash": "0x4a184039d83191f936a8b82760465223238be0b157bd071e256cd1d8673aed6",
+      "tag": "zapfc-PvpMatchFinished",
+      "selector": "0x2ed9f6b91ef53d3623da1d7894a40d9e20aa02135e07f4d2f590a16e9c46f9"
+    },
+    {
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64",
+          "key": true
+        },
+        {
+          "name": "home",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "key": true
+        },
+        {
+          "name": "away",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "key": false
+        }
+      ],
+      "class_hash": "0x279064e67203f03e56ea5e3c2492b5c1ed8ded7c5220bb0b00826dd021d21f0",
+      "tag": "zapfc-PvpMatchStarted",
+      "selector": "0x2027442b32e026c483c9338467788e4c3fd5374331efa6ca9bca963e529f231"
     },
     {
       "members": [
@@ -824,12 +1053,12 @@
           "key": false
         },
         {
-          "name": "player_read",
+          "name": "home_read",
           "type": "core::integer::u8",
           "key": false
         },
         {
-          "name": "opponent_read",
+          "name": "away_read",
           "type": "core::integer::u8",
           "key": false
         },
@@ -839,9 +1068,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x306d93f65b6f5afa5e1c9a13f5168c909dc8f826c93dadb8cad330b5e69e99b",
-      "tag": "dojo_starter-ReadMatchupResolved",
-      "selector": "0x2f20c73dac5cda2c303d6305be3a2fdf516291973d4792028446d4240d17c0"
+      "class_hash": "0x4d7399940fc9afc98b969a7d6a3b5e3dabac55a9ad57627d1cd38c1c9345899",
+      "tag": "zapfc-PvpReadMatchupResolved",
+      "selector": "0x69c9f0cf2397b6728ac10694eccb38aeaeb522f3affc80acd90ee6535187aa3"
     },
     {
       "members": [
@@ -886,9 +1115,243 @@
           "key": false
         }
       ],
-      "class_hash": "0x4833cf7251cc5a02bba8e4d0d197f713f979695205d205451867be8b890ec17",
-      "tag": "dojo_starter-RewardClaimed",
-      "selector": "0x79647c465f5e8a437657d01b4ba03ac73538e330323f7750068f9c5952e39f5"
+      "class_hash": "0x1eaf18d2bf524c1e82d1c8de4138c551ebc2595545c6ba785e24c6cd3147f1d",
+      "tag": "zapfc-PvpRewardClaimed",
+      "selector": "0x1c4686564ee90d59dc21b95a5ce5cddbbe408e11697466afd7d158ee02eec9d"
+    },
+    {
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64",
+          "key": true
+        },
+        {
+          "name": "cancelled_at",
+          "type": "core::integer::u64",
+          "key": false
+        }
+      ],
+      "class_hash": "0x3c8e87d2f514a10cf075b53a9e94463547b7161308da46336bc781f342f6a39",
+      "tag": "zapfc-PvpRoomCancelled",
+      "selector": "0x63e4a37143adc2284fafeeed40b6469e830c3e4768555098e97066bca62ba82"
+    },
+    {
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64",
+          "key": true
+        },
+        {
+          "name": "home",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "key": false
+        },
+        {
+          "name": "created_at",
+          "type": "core::integer::u64",
+          "key": false
+        }
+      ],
+      "class_hash": "0x5790c1c3076841643add1959e174eea03f893a2a7df3a5fbd49b0188e8ba810",
+      "tag": "zapfc-PvpRoomCreated",
+      "selector": "0x4954a50c27ab6b10d20f50552c668c3d73c82e69cd38b38116e5ab7d9d3ec2c"
+    },
+    {
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64",
+          "key": true
+        },
+        {
+          "name": "player",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "key": true
+        },
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "reveal_deadline",
+          "type": "core::integer::u64",
+          "key": false
+        }
+      ],
+      "class_hash": "0x7aa9b66b62624cd7eb9f6c8c6055cc35d702bf4d04e7414476a738658885ed5",
+      "tag": "zapfc-PvpTurnCommitted",
+      "selector": "0x111749ea456c2de19af81dfc6aeefad66ae5b03bb3ef8e3ea7a689a28edc825"
+    },
+    {
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64",
+          "key": true
+        },
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "phase",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "home_action",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "away_action",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "success",
+          "type": "core::bool",
+          "key": false
+        },
+        {
+          "name": "score_h",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "score_a",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "next_phase",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "rate_bps",
+          "type": "core::integer::u32",
+          "key": false
+        }
+      ],
+      "class_hash": "0x7da0b3841fdfdeb15b7d9ded79cf3660d436129a950c84fddc7203e6f189260",
+      "tag": "zapfc-PvpTurnResolved",
+      "selector": "0x142b91779d5bdbf4896a51c6aa1cfc09a1a2cd06bd7ed3bda1c443d9cf5e591"
+    },
+    {
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64",
+          "key": true
+        },
+        {
+          "name": "player",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "key": true
+        },
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "action",
+          "type": "core::integer::u8",
+          "key": false
+        }
+      ],
+      "class_hash": "0x67a8bcbef88547ad7f37224b3de77987d99d8fb1831d7cf6d070c28ddd62a3f",
+      "tag": "zapfc-PvpTurnRevealed",
+      "selector": "0x3ece96bf79ea81ecfaaed04d35fcda39ebe16ab025da9ff0937758f42a4cb98"
+    },
+    {
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64",
+          "key": true
+        },
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "situation",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "player_read",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "opponent_read",
+          "type": "core::integer::u8",
+          "key": false
+        },
+        {
+          "name": "matchup_result",
+          "type": "core::integer::u8",
+          "key": false
+        }
+      ],
+      "class_hash": "0x78aff1a8bb205d5b2653814fd214a3eb9e6435b05dbd0ce88d11c29e446841c",
+      "tag": "zapfc-ReadMatchupResolved",
+      "selector": "0x4df70cbb98943e05a242bd57a58f0329956f6dece81844da86b816e32267318"
+    },
+    {
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64",
+          "key": true
+        },
+        {
+          "name": "player",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "key": true
+        },
+        {
+          "name": "rep_gained",
+          "type": "core::integer::u32",
+          "key": false
+        },
+        {
+          "name": "rep_lost",
+          "type": "core::integer::u32",
+          "key": false
+        },
+        {
+          "name": "coins_gained",
+          "type": "core::integer::u32",
+          "key": false
+        },
+        {
+          "name": "new_rep",
+          "type": "core::integer::u32",
+          "key": false
+        },
+        {
+          "name": "new_coins",
+          "type": "core::integer::u32",
+          "key": false
+        },
+        {
+          "name": "new_streak",
+          "type": "core::integer::u32",
+          "key": false
+        }
+      ],
+      "class_hash": "0x5b295615c02d0c90e807f9f804d0e1c22825f7230faf55ce57454f7e7316cdd",
+      "tag": "zapfc-RewardClaimed",
+      "selector": "0x5662fff4856b97a34723b6b8c2e712feedc71b59de32c43a68a1a9f6418be6"
     },
     {
       "members": [
@@ -908,9 +1371,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x68f5714ab9a97d9647aac781291cfb9efd8aa223f857b60e1bec801b6dfc376",
-      "tag": "dojo_starter-StarterEquipped",
-      "selector": "0x239e60b40f62ddfd80134629e8498ba7cc74b513124ab2f5015f6f607025db6"
+      "class_hash": "0x6a9e8965dec5e4ced716b52d85df192f932619cd09497232d69e201d9ce84e9",
+      "tag": "zapfc-StarterEquipped",
+      "selector": "0x271a4c357b62287694c8bbb473ecc152d898c7482e432efc3d5909344d1254e"
     },
     {
       "members": [
@@ -970,9 +1433,9 @@
           "key": false
         }
       ],
-      "class_hash": "0x10775c0eb4da9378396649d37235bc5fada43530e50731c2745f624511bb93f",
-      "tag": "dojo_starter-TurnResolved",
-      "selector": "0x3f51f6ef21510e9761660c389f5a49d26c273da54d5689b54f00761d011eb61"
+      "class_hash": "0x4d91be07c310f67537a53bab85423b0cfa1a017fb23bafdc996ce7756ca25c8",
+      "tag": "zapfc-TurnResolved",
+      "selector": "0x6bfb5f4d4a3ceab251e9dede3dc34fb684d790734bbb6037a627c6c4ff3b561"
     }
   ],
   "external_contracts": [],
@@ -2793,8 +3256,39 @@
       "state_mutability": "view"
     },
     {
+      "type": "function",
+      "name": "ensure_abi",
+      "inputs": [
+        {
+          "name": "event",
+          "type": "zapfc_contracts::systems::game_actions::TurnResolved"
+        }
+      ],
+      "outputs": [],
+      "state_mutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "ensure_unique",
+      "inputs": [],
+      "outputs": [],
+      "state_mutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "ensure_values",
+      "inputs": [
+        {
+          "name": "value",
+          "type": "zapfc_contracts::systems::game_actions::TurnResolvedValue"
+        }
+      ],
+      "outputs": [],
+      "state_mutability": "view"
+    },
+    {
       "type": "struct",
-      "name": "dojo_starter::models::DailyMission",
+      "name": "zapfc_contracts::models::DailyMission",
       "members": [
         {
           "name": "wallet",
@@ -2832,7 +3326,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::DailyMissionValue",
+      "name": "zapfc_contracts::models::DailyMissionValue",
       "members": [
         {
           "name": "day",
@@ -2862,7 +3356,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::FormationConfig",
+      "name": "zapfc_contracts::models::FormationConfig",
       "members": [
         {
           "name": "wallet",
@@ -2874,17 +3368,17 @@
         },
         {
           "name": "starters",
-          "type": "dojo_starter::models::StarterSlots"
+          "type": "zapfc_contracts::models::StarterSlots"
         },
         {
           "name": "team_stats",
-          "type": "dojo_starter::models::StatBlock"
+          "type": "zapfc_contracts::models::StatBlock"
         }
       ]
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::FormationConfigValue",
+      "name": "zapfc_contracts::models::FormationConfigValue",
       "members": [
         {
           "name": "formation_id",
@@ -2892,17 +3386,17 @@
         },
         {
           "name": "starters",
-          "type": "dojo_starter::models::StarterSlots"
+          "type": "zapfc_contracts::models::StarterSlots"
         },
         {
           "name": "team_stats",
-          "type": "dojo_starter::models::StatBlock"
+          "type": "zapfc_contracts::models::StatBlock"
         }
       ]
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::GameSession",
+      "name": "zapfc_contracts::models::GameSession",
       "members": [
         {
           "name": "session_id",
@@ -2932,7 +3426,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::GameSessionValue",
+      "name": "zapfc_contracts::models::GameSessionValue",
       "members": [
         {
           "name": "player",
@@ -2958,7 +3452,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::GlobalCounter",
+      "name": "zapfc_contracts::models::GlobalCounter",
       "members": [
         {
           "name": "counter_id",
@@ -2972,7 +3466,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::GlobalCounterValue",
+      "name": "zapfc_contracts::models::GlobalCounterValue",
       "members": [
         {
           "name": "value",
@@ -2982,7 +3476,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::GlobalLeaderboard",
+      "name": "zapfc_contracts::models::GlobalLeaderboard",
       "members": [
         {
           "name": "rank",
@@ -3012,7 +3506,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::GlobalLeaderboardValue",
+      "name": "zapfc_contracts::models::GlobalLeaderboardValue",
       "members": [
         {
           "name": "wallet",
@@ -3038,7 +3532,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::MarketListing",
+      "name": "zapfc_contracts::models::MarketListing",
       "members": [
         {
           "name": "listing_id",
@@ -3064,7 +3558,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::MarketListingValue",
+      "name": "zapfc_contracts::models::MarketListingValue",
       "members": [
         {
           "name": "card_id",
@@ -3086,7 +3580,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::PlayerRegistry",
+      "name": "zapfc_contracts::models::PlayerRegistry",
       "members": [
         {
           "name": "wallet",
@@ -3144,7 +3638,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::PlayerRegistryValue",
+      "name": "zapfc_contracts::models::PlayerRegistryValue",
       "members": [
         {
           "name": "club_name",
@@ -3198,7 +3692,183 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::SquadNFT",
+      "name": "zapfc_contracts::models::PvpSession",
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "home",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "away",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "lobby_status",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "state",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "turn_stage",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "turn_deadline",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "created_at",
+          "type": "core::integer::u64"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::models::PvpSessionValue",
+      "members": [
+        {
+          "name": "home",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "away",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "lobby_status",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "state",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "turn_stage",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "turn_deadline",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "created_at",
+          "type": "core::integer::u64"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::models::PvpTurnCommit",
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "player",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "committed",
+          "type": "core::bool"
+        },
+        {
+          "name": "commit_hash",
+          "type": "core::felt252"
+        },
+        {
+          "name": "submitted_at",
+          "type": "core::integer::u64"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::models::PvpTurnCommitValue",
+      "members": [
+        {
+          "name": "committed",
+          "type": "core::bool"
+        },
+        {
+          "name": "commit_hash",
+          "type": "core::felt252"
+        },
+        {
+          "name": "submitted_at",
+          "type": "core::integer::u64"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::models::PvpTurnReveal",
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "player",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "revealed",
+          "type": "core::bool"
+        },
+        {
+          "name": "action",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "salt",
+          "type": "core::felt252"
+        },
+        {
+          "name": "revealed_at",
+          "type": "core::integer::u64"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::models::PvpTurnRevealValue",
+      "members": [
+        {
+          "name": "revealed",
+          "type": "core::bool"
+        },
+        {
+          "name": "action",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "salt",
+          "type": "core::felt252"
+        },
+        {
+          "name": "revealed_at",
+          "type": "core::integer::u64"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::models::SquadNFT",
       "members": [
         {
           "name": "card_id",
@@ -3244,7 +3914,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::SquadNFTValue",
+      "name": "zapfc_contracts::models::SquadNFTValue",
       "members": [
         {
           "name": "name",
@@ -3286,7 +3956,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::StarterSlots",
+      "name": "zapfc_contracts::models::StarterSlots",
       "members": [
         {
           "name": "striker_id",
@@ -3304,7 +3974,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::StatBlock",
+      "name": "zapfc_contracts::models::StatBlock",
       "members": [
         {
           "name": "atk",
@@ -3322,7 +3992,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::TournamentBracket",
+      "name": "zapfc_contracts::models::TournamentBracket",
       "members": [
         {
           "name": "bracket_id",
@@ -3352,7 +4022,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::TournamentBracketValue",
+      "name": "zapfc_contracts::models::TournamentBracketValue",
       "members": [
         {
           "name": "creator",
@@ -3378,7 +4048,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::TournamentParticipant",
+      "name": "zapfc_contracts::models::TournamentParticipant",
       "members": [
         {
           "name": "bracket_id",
@@ -3404,7 +4074,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::TournamentParticipantValue",
+      "name": "zapfc_contracts::models::TournamentParticipantValue",
       "members": [
         {
           "name": "seed",
@@ -3422,7 +4092,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::VRFRequest",
+      "name": "zapfc_contracts::models::VRFRequest",
       "members": [
         {
           "name": "request_id",
@@ -3440,7 +4110,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::models::VRFRequestValue",
+      "name": "zapfc_contracts::models::VRFRequestValue",
       "members": [
         {
           "name": "session_id",
@@ -3454,73 +4124,91 @@
     },
     {
       "type": "event",
-      "name": "dojo_starter::models::m_DailyMission::Event",
+      "name": "zapfc_contracts::models::m_DailyMission::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::models::m_FormationConfig::Event",
+      "name": "zapfc_contracts::models::m_FormationConfig::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::models::m_GameSession::Event",
+      "name": "zapfc_contracts::models::m_GameSession::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::models::m_GlobalCounter::Event",
+      "name": "zapfc_contracts::models::m_GlobalCounter::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::models::m_GlobalLeaderboard::Event",
+      "name": "zapfc_contracts::models::m_GlobalLeaderboard::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::models::m_MarketListing::Event",
+      "name": "zapfc_contracts::models::m_MarketListing::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::models::m_PlayerRegistry::Event",
+      "name": "zapfc_contracts::models::m_PlayerRegistry::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::models::m_SquadNFT::Event",
+      "name": "zapfc_contracts::models::m_PvpSession::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::models::m_TournamentBracket::Event",
+      "name": "zapfc_contracts::models::m_PvpTurnCommit::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::models::m_TournamentParticipant::Event",
+      "name": "zapfc_contracts::models::m_PvpTurnReveal::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::models::m_VRFRequest::Event",
+      "name": "zapfc_contracts::models::m_SquadNFT::Event",
+      "kind": "enum",
+      "variants": []
+    },
+    {
+      "type": "event",
+      "name": "zapfc_contracts::models::m_TournamentBracket::Event",
+      "kind": "enum",
+      "variants": []
+    },
+    {
+      "type": "event",
+      "name": "zapfc_contracts::models::m_TournamentParticipant::Event",
+      "kind": "enum",
+      "variants": []
+    },
+    {
+      "type": "event",
+      "name": "zapfc_contracts::models::m_VRFRequest::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::game_actions::GameFinished",
+      "name": "zapfc_contracts::systems::game_actions::GameFinished",
       "members": [
         {
           "name": "session_id",
@@ -3546,7 +4234,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::game_actions::GameFinishedValue",
+      "name": "zapfc_contracts::systems::game_actions::GameFinishedValue",
       "members": [
         {
           "name": "score_h",
@@ -3564,7 +4252,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::game_actions::GameStarted",
+      "name": "zapfc_contracts::systems::game_actions::GameStarted",
       "members": [
         {
           "name": "session_id",
@@ -3584,13 +4272,13 @@
         },
         {
           "name": "player_stats",
-          "type": "dojo_starter::models::StatBlock"
+          "type": "zapfc_contracts::models::StatBlock"
         }
       ]
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::game_actions::GameStartedValue",
+      "name": "zapfc_contracts::systems::game_actions::GameStartedValue",
       "members": [
         {
           "name": "cpu_name",
@@ -3602,13 +4290,13 @@
         },
         {
           "name": "player_stats",
-          "type": "dojo_starter::models::StatBlock"
+          "type": "zapfc_contracts::models::StatBlock"
         }
       ]
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::game_actions::HalftimeReached",
+      "name": "zapfc_contracts::systems::game_actions::HalftimeReached",
       "members": [
         {
           "name": "session_id",
@@ -3626,7 +4314,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::game_actions::HalftimeReachedValue",
+      "name": "zapfc_contracts::systems::game_actions::HalftimeReachedValue",
       "members": [
         {
           "name": "score_h",
@@ -3640,7 +4328,7 @@
     },
     {
       "type": "interface",
-      "name": "dojo_starter::systems::game_actions::IGameActions",
+      "name": "zapfc_contracts::systems::game_actions::IGameActions",
       "items": [
         {
           "type": "function",
@@ -3753,7 +4441,7 @@
           ],
           "outputs": [
             {
-              "type": "dojo_starter::models::GameSession"
+              "type": "zapfc_contracts::models::GameSession"
             }
           ],
           "state_mutability": "view"
@@ -3762,7 +4450,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::game_actions::ReadMatchupResolved",
+      "name": "zapfc_contracts::systems::game_actions::ReadMatchupResolved",
       "members": [
         {
           "name": "session_id",
@@ -3792,7 +4480,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::game_actions::ReadMatchupResolvedValue",
+      "name": "zapfc_contracts::systems::game_actions::ReadMatchupResolvedValue",
       "members": [
         {
           "name": "turn_number",
@@ -3818,7 +4506,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::game_actions::RewardClaimed",
+      "name": "zapfc_contracts::systems::game_actions::RewardClaimed",
       "members": [
         {
           "name": "session_id",
@@ -3856,7 +4544,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::game_actions::RewardClaimedValue",
+      "name": "zapfc_contracts::systems::game_actions::RewardClaimedValue",
       "members": [
         {
           "name": "rep_gained",
@@ -3886,7 +4574,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::game_actions::TurnResolved",
+      "name": "zapfc_contracts::systems::game_actions::TurnResolved",
       "members": [
         {
           "name": "session_id",
@@ -3936,7 +4624,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::game_actions::TurnResolvedValue",
+      "name": "zapfc_contracts::systems::game_actions::TurnResolvedValue",
       "members": [
         {
           "name": "turn_number",
@@ -3982,43 +4670,43 @@
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::game_actions::e_GameFinished::Event",
+      "name": "zapfc_contracts::systems::game_actions::e_GameFinished::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::game_actions::e_GameStarted::Event",
+      "name": "zapfc_contracts::systems::game_actions::e_GameStarted::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::game_actions::e_HalftimeReached::Event",
+      "name": "zapfc_contracts::systems::game_actions::e_HalftimeReached::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::game_actions::e_ReadMatchupResolved::Event",
+      "name": "zapfc_contracts::systems::game_actions::e_ReadMatchupResolved::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::game_actions::e_RewardClaimed::Event",
+      "name": "zapfc_contracts::systems::game_actions::e_RewardClaimed::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::game_actions::e_TurnResolved::Event",
+      "name": "zapfc_contracts::systems::game_actions::e_TurnResolved::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::game_actions::game_actions::Event",
+      "name": "zapfc_contracts::systems::game_actions::game_actions::Event",
       "kind": "enum",
       "variants": [
         {
@@ -4035,7 +4723,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::market_actions::CardListed",
+      "name": "zapfc_contracts::systems::market_actions::CardListed",
       "members": [
         {
           "name": "listing_id",
@@ -4057,7 +4745,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::market_actions::CardListedValue",
+      "name": "zapfc_contracts::systems::market_actions::CardListedValue",
       "members": [
         {
           "name": "card_id",
@@ -4075,7 +4763,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::market_actions::CardPurchasedFromShop",
+      "name": "zapfc_contracts::systems::market_actions::CardPurchasedFromShop",
       "members": [
         {
           "name": "buyer",
@@ -4093,7 +4781,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::market_actions::CardPurchasedFromShopValue",
+      "name": "zapfc_contracts::systems::market_actions::CardPurchasedFromShopValue",
       "members": [
         {
           "name": "card_id",
@@ -4107,7 +4795,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::market_actions::CardSold",
+      "name": "zapfc_contracts::systems::market_actions::CardSold",
       "members": [
         {
           "name": "listing_id",
@@ -4133,7 +4821,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::market_actions::CardSoldToShop",
+      "name": "zapfc_contracts::systems::market_actions::CardSoldToShop",
       "members": [
         {
           "name": "seller",
@@ -4151,7 +4839,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::market_actions::CardSoldToShopValue",
+      "name": "zapfc_contracts::systems::market_actions::CardSoldToShopValue",
       "members": [
         {
           "name": "card_id",
@@ -4165,7 +4853,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::market_actions::CardSoldValue",
+      "name": "zapfc_contracts::systems::market_actions::CardSoldValue",
       "members": [
         {
           "name": "card_id",
@@ -4187,7 +4875,7 @@
     },
     {
       "type": "interface",
-      "name": "dojo_starter::systems::market_actions::IMarketActions",
+      "name": "zapfc_contracts::systems::market_actions::IMarketActions",
       "items": [
         {
           "type": "function",
@@ -4257,7 +4945,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::market_actions::ListingCancelled",
+      "name": "zapfc_contracts::systems::market_actions::ListingCancelled",
       "members": [
         {
           "name": "listing_id",
@@ -4275,7 +4963,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::market_actions::ListingCancelledValue",
+      "name": "zapfc_contracts::systems::market_actions::ListingCancelledValue",
       "members": [
         {
           "name": "card_id",
@@ -4289,37 +4977,37 @@
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::market_actions::e_CardListed::Event",
+      "name": "zapfc_contracts::systems::market_actions::e_CardListed::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::market_actions::e_CardPurchasedFromShop::Event",
+      "name": "zapfc_contracts::systems::market_actions::e_CardPurchasedFromShop::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::market_actions::e_CardSold::Event",
+      "name": "zapfc_contracts::systems::market_actions::e_CardSold::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::market_actions::e_CardSoldToShop::Event",
+      "name": "zapfc_contracts::systems::market_actions::e_CardSoldToShop::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::market_actions::e_ListingCancelled::Event",
+      "name": "zapfc_contracts::systems::market_actions::e_ListingCancelled::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::market_actions::market_actions::Event",
+      "name": "zapfc_contracts::systems::market_actions::market_actions::Event",
       "kind": "enum",
       "variants": [
         {
@@ -4336,7 +5024,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::player_actions::CardMinted",
+      "name": "zapfc_contracts::systems::player_actions::CardMinted",
       "members": [
         {
           "name": "card_id",
@@ -4358,7 +5046,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::player_actions::CardMintedValue",
+      "name": "zapfc_contracts::systems::player_actions::CardMintedValue",
       "members": [
         {
           "name": "receiver",
@@ -4376,7 +5064,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::player_actions::FormationChanged",
+      "name": "zapfc_contracts::systems::player_actions::FormationChanged",
       "members": [
         {
           "name": "wallet",
@@ -4388,13 +5076,13 @@
         },
         {
           "name": "team_stats",
-          "type": "dojo_starter::models::StatBlock"
+          "type": "zapfc_contracts::models::StatBlock"
         }
       ]
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::player_actions::FormationChangedValue",
+      "name": "zapfc_contracts::systems::player_actions::FormationChangedValue",
       "members": [
         {
           "name": "formation_id",
@@ -4402,13 +5090,13 @@
         },
         {
           "name": "team_stats",
-          "type": "dojo_starter::models::StatBlock"
+          "type": "zapfc_contracts::models::StatBlock"
         }
       ]
     },
     {
       "type": "interface",
-      "name": "dojo_starter::systems::player_actions::IPlayerActions",
+      "name": "zapfc_contracts::systems::player_actions::IPlayerActions",
       "items": [
         {
           "type": "function",
@@ -4506,7 +5194,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::player_actions::MissionClaimed",
+      "name": "zapfc_contracts::systems::player_actions::MissionClaimed",
       "members": [
         {
           "name": "wallet",
@@ -4528,7 +5216,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::player_actions::MissionClaimedValue",
+      "name": "zapfc_contracts::systems::player_actions::MissionClaimedValue",
       "members": [
         {
           "name": "mission_slot",
@@ -4546,7 +5234,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::player_actions::PlayerRegistered",
+      "name": "zapfc_contracts::systems::player_actions::PlayerRegistered",
       "members": [
         {
           "name": "wallet",
@@ -4560,7 +5248,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::player_actions::PlayerRegisteredValue",
+      "name": "zapfc_contracts::systems::player_actions::PlayerRegisteredValue",
       "members": [
         {
           "name": "club_name",
@@ -4570,7 +5258,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::player_actions::StarterEquipped",
+      "name": "zapfc_contracts::systems::player_actions::StarterEquipped",
       "members": [
         {
           "name": "wallet",
@@ -4588,7 +5276,7 @@
     },
     {
       "type": "struct",
-      "name": "dojo_starter::systems::player_actions::StarterEquippedValue",
+      "name": "zapfc_contracts::systems::player_actions::StarterEquippedValue",
       "members": [
         {
           "name": "card_id",
@@ -4602,37 +5290,37 @@
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::player_actions::e_CardMinted::Event",
+      "name": "zapfc_contracts::systems::player_actions::e_CardMinted::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::player_actions::e_FormationChanged::Event",
+      "name": "zapfc_contracts::systems::player_actions::e_FormationChanged::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::player_actions::e_MissionClaimed::Event",
+      "name": "zapfc_contracts::systems::player_actions::e_MissionClaimed::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::player_actions::e_PlayerRegistered::Event",
+      "name": "zapfc_contracts::systems::player_actions::e_PlayerRegistered::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::player_actions::e_StarterEquipped::Event",
+      "name": "zapfc_contracts::systems::player_actions::e_StarterEquipped::Event",
       "kind": "enum",
       "variants": []
     },
     {
       "type": "event",
-      "name": "dojo_starter::systems::player_actions::player_actions::Event",
+      "name": "zapfc_contracts::systems::player_actions::player_actions::Event",
       "kind": "enum",
       "variants": [
         {
@@ -4648,35 +5336,658 @@
       ]
     },
     {
-      "type": "function",
-      "name": "ensure_abi",
-      "inputs": [
+      "type": "interface",
+      "name": "zapfc_contracts::systems::pvp_actions::IPvpActions",
+      "items": [
         {
-          "name": "event",
-          "type": "dojo_starter::systems::game_actions::TurnResolved"
+          "type": "function",
+          "name": "create_room",
+          "inputs": [],
+          "outputs": [
+            {
+              "type": "core::integer::u64"
+            }
+          ],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "join_room",
+          "inputs": [
+            {
+              "name": "session_id",
+              "type": "core::integer::u64"
+            }
+          ],
+          "outputs": [],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "cancel_room",
+          "inputs": [
+            {
+              "name": "session_id",
+              "type": "core::integer::u64"
+            }
+          ],
+          "outputs": [],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "commit_turn",
+          "inputs": [
+            {
+              "name": "session_id",
+              "type": "core::integer::u64"
+            },
+            {
+              "name": "commit_hash",
+              "type": "core::felt252"
+            }
+          ],
+          "outputs": [],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "reveal_turn",
+          "inputs": [
+            {
+              "name": "session_id",
+              "type": "core::integer::u64"
+            },
+            {
+              "name": "action",
+              "type": "core::integer::u8"
+            },
+            {
+              "name": "salt",
+              "type": "core::felt252"
+            }
+          ],
+          "outputs": [],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "continue_after_halftime",
+          "inputs": [
+            {
+              "name": "session_id",
+              "type": "core::integer::u64"
+            }
+          ],
+          "outputs": [],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "claim_timeout",
+          "inputs": [
+            {
+              "name": "session_id",
+              "type": "core::integer::u64"
+            }
+          ],
+          "outputs": [],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "get_session",
+          "inputs": [
+            {
+              "name": "session_id",
+              "type": "core::integer::u64"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "zapfc_contracts::models::PvpSession"
+            }
+          ],
+          "state_mutability": "view"
         }
-      ],
-      "outputs": [],
-      "state_mutability": "view"
+      ]
     },
     {
-      "type": "function",
-      "name": "ensure_unique",
-      "inputs": [],
-      "outputs": [],
-      "state_mutability": "view"
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpHalftimeReached",
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "score_h",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "score_a",
+          "type": "core::integer::u8"
+        }
+      ]
     },
     {
-      "type": "function",
-      "name": "ensure_values",
-      "inputs": [
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpHalftimeReachedValue",
+      "members": [
         {
-          "name": "value",
-          "type": "dojo_starter::systems::game_actions::TurnResolvedValue"
+          "name": "score_h",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "score_a",
+          "type": "core::integer::u8"
         }
-      ],
-      "outputs": [],
-      "state_mutability": "view"
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpMatchFinished",
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "home",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "away",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "score_h",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "score_a",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "outcome",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "forfeited",
+          "type": "core::bool"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpMatchFinishedValue",
+      "members": [
+        {
+          "name": "away",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "score_h",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "score_a",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "outcome",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "forfeited",
+          "type": "core::bool"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpMatchStarted",
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "home",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "away",
+          "type": "core::starknet::contract_address::ContractAddress"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpMatchStartedValue",
+      "members": [
+        {
+          "name": "away",
+          "type": "core::starknet::contract_address::ContractAddress"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpReadMatchupResolved",
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "situation",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "home_read",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "away_read",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "matchup_result",
+          "type": "core::integer::u8"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpReadMatchupResolvedValue",
+      "members": [
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "situation",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "home_read",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "away_read",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "matchup_result",
+          "type": "core::integer::u8"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpRewardClaimed",
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "player",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "rep_gained",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "rep_lost",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "coins_gained",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "new_rep",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "new_coins",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "new_streak",
+          "type": "core::integer::u32"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpRewardClaimedValue",
+      "members": [
+        {
+          "name": "rep_gained",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "rep_lost",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "coins_gained",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "new_rep",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "new_coins",
+          "type": "core::integer::u32"
+        },
+        {
+          "name": "new_streak",
+          "type": "core::integer::u32"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpRoomCancelled",
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "cancelled_at",
+          "type": "core::integer::u64"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpRoomCancelledValue",
+      "members": [
+        {
+          "name": "cancelled_at",
+          "type": "core::integer::u64"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpRoomCreated",
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "home",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "created_at",
+          "type": "core::integer::u64"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpRoomCreatedValue",
+      "members": [
+        {
+          "name": "home",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "created_at",
+          "type": "core::integer::u64"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpTurnCommitted",
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "player",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "reveal_deadline",
+          "type": "core::integer::u64"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpTurnCommittedValue",
+      "members": [
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "reveal_deadline",
+          "type": "core::integer::u64"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpTurnResolved",
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "phase",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "home_action",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "away_action",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "success",
+          "type": "core::bool"
+        },
+        {
+          "name": "score_h",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "score_a",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "next_phase",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "rate_bps",
+          "type": "core::integer::u32"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpTurnResolvedValue",
+      "members": [
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "phase",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "home_action",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "away_action",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "success",
+          "type": "core::bool"
+        },
+        {
+          "name": "score_h",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "score_a",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "next_phase",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "rate_bps",
+          "type": "core::integer::u32"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpTurnRevealed",
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "player",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "action",
+          "type": "core::integer::u8"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::systems::pvp_actions::PvpTurnRevealedValue",
+      "members": [
+        {
+          "name": "turn_number",
+          "type": "core::integer::u8"
+        },
+        {
+          "name": "action",
+          "type": "core::integer::u8"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "zapfc_contracts::systems::pvp_actions::e_PvpHalftimeReached::Event",
+      "kind": "enum",
+      "variants": []
+    },
+    {
+      "type": "event",
+      "name": "zapfc_contracts::systems::pvp_actions::e_PvpMatchFinished::Event",
+      "kind": "enum",
+      "variants": []
+    },
+    {
+      "type": "event",
+      "name": "zapfc_contracts::systems::pvp_actions::e_PvpMatchStarted::Event",
+      "kind": "enum",
+      "variants": []
+    },
+    {
+      "type": "event",
+      "name": "zapfc_contracts::systems::pvp_actions::e_PvpReadMatchupResolved::Event",
+      "kind": "enum",
+      "variants": []
+    },
+    {
+      "type": "event",
+      "name": "zapfc_contracts::systems::pvp_actions::e_PvpRewardClaimed::Event",
+      "kind": "enum",
+      "variants": []
+    },
+    {
+      "type": "event",
+      "name": "zapfc_contracts::systems::pvp_actions::e_PvpRoomCancelled::Event",
+      "kind": "enum",
+      "variants": []
+    },
+    {
+      "type": "event",
+      "name": "zapfc_contracts::systems::pvp_actions::e_PvpRoomCreated::Event",
+      "kind": "enum",
+      "variants": []
+    },
+    {
+      "type": "event",
+      "name": "zapfc_contracts::systems::pvp_actions::e_PvpTurnCommitted::Event",
+      "kind": "enum",
+      "variants": []
+    },
+    {
+      "type": "event",
+      "name": "zapfc_contracts::systems::pvp_actions::e_PvpTurnResolved::Event",
+      "kind": "enum",
+      "variants": []
+    },
+    {
+      "type": "event",
+      "name": "zapfc_contracts::systems::pvp_actions::e_PvpTurnRevealed::Event",
+      "kind": "enum",
+      "variants": []
+    },
+    {
+      "type": "event",
+      "name": "zapfc_contracts::systems::pvp_actions::pvp_actions::Event",
+      "kind": "enum",
+      "variants": [
+        {
+          "name": "UpgradeableEvent",
+          "type": "dojo::contract::components::upgradeable::upgradeable_cpt::Event",
+          "kind": "nested"
+        },
+        {
+          "name": "WorldProviderEvent",
+          "type": "dojo::contract::components::world_provider::world_provider_cpt::Event",
+          "kind": "nested"
+        }
+      ]
     }
   ]
 }

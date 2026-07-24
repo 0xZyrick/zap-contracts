@@ -7,7 +7,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 // ── Situation IDs (imported from constants, re-exported here) ─────────────────
-// use dojo_starter::constants::{
+// use zapfc_contracts::constants::{
 //     SITUATION_MIDFIELD_ATTACKING, SITUATION_MIDFIELD_DEFENDING,
 //     SITUATION_ATTACK, SITUATION_DEFEND,
 // };
@@ -31,7 +31,7 @@
 ///   1 = "Win" (all other matchups)
 ///   2 = "Beat The Read" (player read beats opponent read)
 pub fn eval_read_matchup(situation: u8, player_read: u8, opponent_read: u8) -> u8 {
-    use dojo_starter::constants::{
+    use zapfc_contracts::constants::{
         SITUATION_MIDFIELD_ATTACKING, SITUATION_MIDFIELD_DEFENDING,
         SITUATION_ATTACK, SITUATION_DEFEND,
     };

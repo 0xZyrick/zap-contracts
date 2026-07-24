@@ -5,8 +5,8 @@
 use dojo::world::WorldStorage;
 use dojo::model::ModelStorage;
 
-use dojo_starter::models::{GlobalCounter, SquadNFT, StatBlock, StarterSlots};
-use dojo_starter::constants::{
+use zapfc_contracts::models::{GlobalCounter, SquadNFT, StatBlock, StarterSlots};
+use zapfc_contracts::constants::{
     PHASE_MIDFIELD, PHASE_ATTACK, PHASE_DEFEND,
     BASE_STAT, RATE_BASE, RATE_STAT_SCALE, RATE_MIN, RATE_MAX,
     AMOD_MF_0, AMOD_MF_1, AMOD_MF_2,

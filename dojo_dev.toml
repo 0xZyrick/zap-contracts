@@ -27,6 +27,7 @@ private_key = "0xc5b2fcab997346f3ea1c00b002ecf6f382c5f9c9659a3894eb783c5320f912"
   "dojo_starter-player_actions",
   "dojo_starter-game_actions",
   "dojo_starter-market_actions",
+  "dojo_starter-pvp_actions",
 ]
 "dojo_starter-FormationConfig" = [
   "dojo_starter-player_actions",
@@ -50,9 +51,19 @@ private_key = "0xc5b2fcab997346f3ea1c00b002ecf6f382c5f9c9659a3894eb783c5320f912"
 "dojo_starter-GlobalCounter" = [
   "dojo_starter-game_actions",
   "dojo_starter-market_actions",
+  "dojo_starter-pvp_actions",
 ]
 "dojo_starter-MarketListing" = [
   "dojo_starter-market_actions",
+]
+"dojo_starter-PvpSession" = [
+  "dojo_starter-pvp_actions",
+]
+"dojo_starter-PvpTurnCommit" = [
+  "dojo_starter-pvp_actions",
+]
+"dojo_starter-PvpTurnReveal" = [
+  "dojo_starter-pvp_actions",
 ]
 "dojo_starter-PlayerRegistered" = ["dojo_starter-player_actions"]
 "dojo_starter-FormationChanged" = ["dojo_starter-player_actions"]
@@ -69,3 +80,13 @@ private_key = "0xc5b2fcab997346f3ea1c00b002ecf6f382c5f9c9659a3894eb783c5320f912"
 "dojo_starter-ListingCancelled" = ["dojo_starter-market_actions"]
 "dojo_starter-CardPurchasedFromShop" = ["dojo_starter-market_actions"]
 "dojo_starter-CardSoldToShop" = ["dojo_starter-market_actions"]
+"dojo_starter-PvpRoomCreated" = ["dojo_starter-pvp_actions"]
+"dojo_starter-PvpMatchStarted" = ["dojo_starter-pvp_actions"]
+"dojo_starter-PvpRoomCancelled" = ["dojo_starter-pvp_actions"]
+"dojo_starter-PvpTurnCommitted" = ["dojo_starter-pvp_actions"]
+"dojo_starter-PvpTurnRevealed" = ["dojo_starter-pvp_actions"]
+"dojo_starter-PvpTurnResolved" = ["dojo_starter-pvp_actions"]
+"dojo_starter-PvpReadMatchupResolved" = ["dojo_starter-pvp_actions"]
+"dojo_starter-PvpHalftimeReached" = ["dojo_starter-pvp_actions"]
+"dojo_starter-PvpMatchFinished" = ["dojo_starter-pvp_actions"]
+"dojo_starter-PvpRewardClaimed" = ["dojo_starter-pvp_actions"]
