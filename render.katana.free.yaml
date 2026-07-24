@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: zapfc-devnet-katana-free
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./Dockerfile.katana.render
+    dockerContext: .
+    autoDeployTrigger: off

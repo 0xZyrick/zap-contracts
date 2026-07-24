@@ -12,6 +12,12 @@ This setup creates a new Katana chain for public testing. It does not change the
 
 Katana uses chain ID `ZAP_DEVNET`, free transactions, public CORS, persistent chain storage, and Cartridge controller/paymaster support.
 
+### No-card temporary option
+
+Use `render.katana.free.yaml` instead when a paid disk is not possible. It creates a free public Katana service without a persistent disk.
+
+The service is suitable only for a temporary demo: every Render restart, redeploy, or loss of ephemeral storage resets the whole chain. After any reset, run the migration again, replace the frontend manifest with the new `manifest_dev.json`, and restart the devnet Torii service.
+
 ## 2. Migrate a fresh world
 
 From `contracts/`, deploy the world to the new Katana URL:
