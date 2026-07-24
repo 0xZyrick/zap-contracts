@@ -1,0 +1,7 @@
+FROM ghcr.io/dojoengine/katana:v1.8.6
+
+EXPOSE 10000
+
+ENTRYPOINT []
+
+CMD katana --dev --dev.no-fee --chain-id ZAP_DEVNET --cartridge.paymaster --db-dir /var/lib/katana --http.addr 0.0.0.0 --http.port "${PORT:-10000}" --http.cors_origins "*"

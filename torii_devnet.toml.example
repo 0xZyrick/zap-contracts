@@ -1,0 +1,7 @@
+world_address = "REPLACE_WITH_DEVNET_WORLD_ADDRESS"
+rpc = "REPLACE_WITH_DEVNET_KATANA_URL"
+start_block = 0
+
+[indexing]
+controllers = true
+allowed_origins = ["*"]

@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: zapfc-devnet-katana
+    runtime: docker
+    plan: starter
+    region: frankfurt
+    dockerfilePath: ./Dockerfile.katana.render
+    dockerContext: .
+    autoDeployTrigger: off
+    disk:
+      name: katana-data
+      mountPath: /var/lib/katana
+      sizeGB: 1
