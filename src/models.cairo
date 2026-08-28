@@ -152,6 +152,20 @@ pub struct GameSession {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+//  5a. ActiveGameSession
+//
+//  Direct RPC lookup for a player's current solo session. This removes the
+//  need for an indexer or session-id scanning when the client reloads.
+// ─────────────────────────────────────────────────────────────────────────────
+#[derive(Copy, Drop, Serde, Debug)]
+#[dojo::model]
+pub struct ActiveGameSession {
+    #[key]
+    pub player:     ContractAddress,
+    pub session_id: u64,
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 //  NOTE: TurnRecord model removed — replaced by TurnResolved event.
 //
 //  All turn data is emitted via the TurnResolved event in game_actions.cairo.

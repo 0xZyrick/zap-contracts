@@ -34,17 +34,15 @@
   "contracts": [
     {
       "address": "0x34e10b9de32efa9c7aacb23a4987c3755c9d6e2966b2840543b18d7ceb80413",
-      "class_hash": "0x6c5e403e5723ac330e07c95f851cfe57db53435b5fda59cf139de83acf44409",
+      "class_hash": "0x13dbdd3be68e7eec500765b2af3a370a262f9f1ddda0296f50447ba5b7fa9c0",
       "init_calldata": [],
       "tag": "zapfc-game_actions",
       "selector": "0xbf411d311bdda8dc7c210309c354bbd056c1aad3591fd6165c7fa3c9650ef8",
       "systems": [
         "start_game",
         "submit_turn_action",
-        "receive_random_words",
         "continue_after_halftime",
         "claim_game_reward",
-        "dev_resolve_turn",
         "upgrade"
       ]
     },
@@ -65,7 +63,7 @@
     },
     {
       "address": "0x5b4df3975b458271e690b8823b8de83b72ffd36b3b1f41ba399d67b890a5c9f",
-      "class_hash": "0x26a7d960160f4ebe323351b1185ddef5f07dedac104448c865c4a38aef52101",
+      "class_hash": "0x2fd622eab90098bcdbea9d7638f2decad6b6120cf210edcc11c92edaa6cdb56",
       "init_calldata": [],
       "tag": "zapfc-player_actions",
       "selector": "0x36f83beed1127027799ab5ce8bd1ce2bccb9d9b28d6df47f0058782f2ef3318",
@@ -100,6 +98,23 @@
   ],
   "libraries": [],
   "models": [
+    {
+      "members": [
+        {
+          "name": "player",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "key": true
+        },
+        {
+          "name": "session_id",
+          "type": "core::integer::u64",
+          "key": false
+        }
+      ],
+      "class_hash": "0x78dd418aa2794542ed424bc588bf44a40004802ea18db7c23e58c4c69442f69",
+      "tag": "zapfc-ActiveGameSession",
+      "selector": "0x4d952bb57d4d9d32866e34eb1f5bde1b34113bf9fc5b08b3be694e6207c8ea1"
+    },
     {
       "members": [
         {
@@ -3288,6 +3303,30 @@
     },
     {
       "type": "struct",
+      "name": "zapfc_contracts::models::ActiveGameSession",
+      "members": [
+        {
+          "name": "player",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "session_id",
+          "type": "core::integer::u64"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zapfc_contracts::models::ActiveGameSessionValue",
+      "members": [
+        {
+          "name": "session_id",
+          "type": "core::integer::u64"
+        }
+      ]
+    },
+    {
+      "type": "struct",
       "name": "zapfc_contracts::models::DailyMission",
       "members": [
         {
@@ -4124,6 +4163,12 @@
     },
     {
       "type": "event",
+      "name": "zapfc_contracts::models::m_ActiveGameSession::Event",
+      "kind": "enum",
+      "variants": []
+    },
+    {
+      "type": "event",
       "name": "zapfc_contracts::models::m_DailyMission::Event",
       "kind": "enum",
       "variants": []
@@ -4364,30 +4409,6 @@
         },
         {
           "type": "function",
-          "name": "receive_random_words",
-          "inputs": [
-            {
-              "name": "requestor_address",
-              "type": "core::starknet::contract_address::ContractAddress"
-            },
-            {
-              "name": "request_id",
-              "type": "core::integer::u64"
-            },
-            {
-              "name": "random_words",
-              "type": "core::array::Span::<core::felt252>"
-            },
-            {
-              "name": "calldata",
-              "type": "core::array::Array::<core::felt252>"
-            }
-          ],
-          "outputs": [],
-          "state_mutability": "external"
-        },
-        {
-          "type": "function",
           "name": "continue_after_halftime",
           "inputs": [
             {
@@ -4412,26 +4433,6 @@
         },
         {
           "type": "function",
-          "name": "dev_resolve_turn",
-          "inputs": [
-            {
-              "name": "session_id",
-              "type": "core::integer::u64"
-            },
-            {
-              "name": "action_idx",
-              "type": "core::integer::u8"
-            },
-            {
-              "name": "seed",
-              "type": "core::integer::u128"
-            }
-          ],
-          "outputs": [],
-          "state_mutability": "external"
-        },
-        {
-          "type": "function",
           "name": "get_session",
           "inputs": [
             {
@@ -4442,6 +4443,22 @@
           "outputs": [
             {
               "type": "zapfc_contracts::models::GameSession"
+            }
+          ],
+          "state_mutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "get_active_session",
+          "inputs": [
+            {
+              "name": "player",
+              "type": "core::starknet::contract_address::ContractAddress"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "zapfc_contracts::models::ActiveGameSession"
             }
           ],
           "state_mutability": "view"
@@ -5161,6 +5178,38 @@
           ],
           "outputs": [],
           "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "get_player",
+          "inputs": [
+            {
+              "name": "wallet",
+              "type": "core::starknet::contract_address::ContractAddress"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "zapfc_contracts::models::PlayerRegistry"
+            }
+          ],
+          "state_mutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "get_formation",
+          "inputs": [
+            {
+              "name": "wallet",
+              "type": "core::starknet::contract_address::ContractAddress"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "zapfc_contracts::models::FormationConfig"
+            }
+          ],
+          "state_mutability": "view"
         },
         {
           "type": "function",

@@ -8,37 +8,15 @@
 //   • cpu_name removed from GameSession (already in GameStarted event)
 // ─────────────────────────────────────────────────────────────────────────────
 
-// ── Pragma VRF external interface ─────────────────────────────────────────────
-#[starknet::interface]
-trait IRandomness<TContractState> {
-    fn request_randomness(
-        ref self: TContractState,
-        seed:                u64,
-        callback_address:    starknet::ContractAddress,
-        callback_fee_limit:  u128,
-        publish_delay:       u64,
-        num_words:           u64,
-        calldata:            Array<felt252>,
-    );
-    fn cancel_random_words(ref self: TContractState, request_id: u64);
-}
-
 // ── Interface ─────────────────────────────────────────────────────────────────
 #[starknet::interface]
 pub trait IGameActions<T> {
     fn start_game(ref self: T, cpu_idx: u8) -> u64;
     fn submit_turn_action(ref self: T, session_id: u64, action_idx: u8);
-    fn receive_random_words(
-        ref self: T,
-        requestor_address: starknet::ContractAddress,
-        request_id:        u64,
-        random_words:      Span<felt252>,
-        calldata:          Array<felt252>,
-    );
     fn continue_after_halftime(ref self: T, session_id: u64);
     fn claim_game_reward(ref self: T, session_id: u64);
-    fn dev_resolve_turn(ref self: T, session_id: u64, action_idx: u8, seed: u128);
     fn get_session(self: @T, session_id: u64) -> zapfc_contracts::models::GameSession;
+    fn get_active_session(self: @T, player: starknet::ContractAddress) -> zapfc_contracts::models::ActiveGameSession;
 }
 
 // ── Events ────────────────────────────────────────────────────────────────────
@@ -126,20 +104,19 @@ pub struct RewardClaimed {
 #[dojo::contract]
 pub mod game_actions {
     use super::{
-        IGameActions, IRandomnessDispatcher, IRandomnessDispatcherTrait,
+        IGameActions,
         GameStarted, TurnResolved, ReadMatchupResolved, HalftimeReached, GameFinished, RewardClaimed,
     };
 
-    use starknet::{ContractAddress, get_caller_address, get_contract_address, get_block_timestamp};
+    use starknet::{ContractAddress, get_caller_address, get_block_timestamp};
     use dojo::model::ModelStorage;
     use dojo::event::EventStorage;
 
-    use zapfc_contracts::models::{PlayerRegistry, FormationConfig, GameSession, VRFRequest};
+    use zapfc_contracts::models::{ActiveGameSession, PlayerRegistry, FormationConfig, GameSession};
     use zapfc_contracts::constants::{
         PHASE_MIDFIELD, STATUS_ACTIVE, STATUS_HALFTIME, STATUS_FINISHED,
         NO_PENDING_ACTION, TURNS_PER_HALF,
-        CTR_SESSION, CTR_VRF_REQ,
-        PRAGMA_VRF_SEPOLIA,
+        CTR_SESSION,
         PHASE_ATTACK, PHASE_DEFEND,
     };
     use zapfc_contracts::utils::{
@@ -156,13 +133,6 @@ pub mod game_actions {
     use zapfc_contracts::constants::{
         SITUATION_MIDFIELD_ATTACKING, SITUATION_ATTACK, SITUATION_DEFEND,
     };
-
-    const VRF_FEE_LIMIT:    u128 = 100_000_000_000_000_u128;
-    const VRF_PUBLISH_DELAY: u64 = 1_u64;
-
-    fn vrf_address() -> ContractAddress {
-        PRAGMA_VRF_SEPOLIA.try_into().unwrap()
-    }
 
     fn situation_for_phase(phase: u8, _turn_number: u8) -> u8 {
         // Determine situation based on phase
@@ -356,6 +326,7 @@ pub mod game_actions {
                 stats_packed:   pack_stats(cfg.team_stats),
                 vrf_request_id: 0,
             });
+            world.write_model(@ActiveGameSession { player, session_id });
 
             world.emit_event(@GameStarted {
                 session_id, player, cpu_name, cpu_power, player_stats: cfg.team_stats
@@ -378,65 +349,13 @@ pub mod game_actions {
             assert!(status == STATUS_ACTIVE,    "Game not active");
             assert!(pending == NO_PENDING_ACTION, "Already pending");
 
-            // Store pending action in state
+            // Resolve immediately using a predictable on-chain CPU read. The
+            // whole solo match now completes through the player's transaction,
+            // without VRF callbacks, relayers, or indexer coordination.
             let (turn, half, phase, sh, sa, st, _) = unpack_state(session.state);
             session.state = pack_state(turn, half, phase, sh, sa, st, action_idx);
-
-            // Request VRF
-            let req_id = next_id(CTR_VRF_REQ, ref world);
-            session.vrf_request_id = req_id;
-            world.write_model(@session);
-
-            world.write_model(@VRFRequest { request_id: req_id, session_id, fulfilled: false });
-
-            let mut calldata: Array<felt252> = ArrayTrait::new();
-            calldata.append(session_id.into());
-            calldata.append(req_id.into());
-
-            let vrf = IRandomnessDispatcher { contract_address: vrf_address() };
-            vrf.request_randomness(
-                seed:               get_block_timestamp(),
-                callback_address:   get_contract_address(),
-                callback_fee_limit: VRF_FEE_LIMIT,
-                publish_delay:      VRF_PUBLISH_DELAY,
-                num_words:          1,
-                calldata: calldata,
-            );
-        }
-
-        // ── 3. receive_random_words  (Pragma VRF callback) ────────────────────
-        fn receive_random_words(
-            ref self: ContractState,
-            requestor_address: ContractAddress,
-            request_id:        u64,
-            random_words:      Span<felt252>,
-            calldata:          Array<felt252>,
-        ) {
-            let mut world = self.world_default();
-            let _ = request_id;
-
-            assert!(requestor_address == vrf_address(), "Unauthorised VRF caller");
-            assert!(random_words.len() >= 1,            "No random words");
-
-            let session_id:      u64 = (*calldata.at(0)).try_into().unwrap();
-            let internal_req_id: u64 = (*calldata.at(1)).try_into().unwrap();
-
-            let mut vrf_req: VRFRequest = world.read_model(internal_req_id);
-            assert!(!vrf_req.fulfilled,               "Already fulfilled");
-            assert!(vrf_req.session_id == session_id, "Session mismatch");
-            vrf_req.fulfilled = true;
-            world.write_model(@vrf_req);
-
-            let raw: u256   = (*random_words.at(0)).into();
-            let vrf_seed: u128 = (raw & 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF_u256)
-                .try_into().unwrap();
-
-            let mut session: GameSession = world.read_model(session_id);
-            let (_, _, _, _, _, status, pending) = unpack_state(session.state);
-            assert!(status == STATUS_ACTIVE,      "Game not active");
-            assert!(pending != NO_PENDING_ACTION, "No pending action");
-
-            resolve_turn(ref session, vrf_seed, ref world);
+            let deterministic_seed: u128 = session_id.into() * 100_u128 + turn.into();
+            resolve_turn(ref session, deterministic_seed, ref world);
             world.write_model(@session);
         }
 
@@ -473,6 +392,7 @@ pub mod game_actions {
             let (t, h, p, sh, sa, _, pd) = unpack_state(session.state);
             session.state = pack_state(t, h, p, sh, sa, STATUS_CLAIMED, pd);
             world.write_model(@session);
+            world.write_model(@ActiveGameSession { player, session_id: 0 });
 
             let outcome = match_outcome(score_h, score_a);
             let mut reg: PlayerRegistry = world.read_model(player);
@@ -514,30 +434,13 @@ pub mod game_actions {
             });
         }
 
-        // ── 6. dev_resolve_turn  (Katana only) ────────────────────────────────
-        fn dev_resolve_turn(
-            ref self: ContractState,
-            session_id: u64, action_idx: u8, seed: u128,
-        ) {
-            let mut world = self.world_default();
-            let player = get_caller_address();
-            assert!(action_idx < 3, "action_idx must be 0-2");
-
-            let mut session: GameSession = world.read_model(session_id);
-            assert!(session.player == player, "Not your session");
-
-            let (turn, half, phase, sh, sa, status, _) = unpack_state(session.state);
-            assert!(status == STATUS_ACTIVE, "Game not active");
-
-            // Inject the action into state then resolve
-            session.state = pack_state(turn, half, phase, sh, sa, status, action_idx);
-            resolve_turn(ref session, seed, ref world);
-            world.write_model(@session);
-        }
-
-        // ── view ──────────────────────────────────────────────────────────────
+        // ── views ─────────────────────────────────────────────────────────────
         fn get_session(self: @ContractState, session_id: u64) -> zapfc_contracts::models::GameSession {
             self.world_default().read_model(session_id)
+        }
+
+        fn get_active_session(self: @ContractState, player: ContractAddress) -> ActiveGameSession {
+            self.world_default().read_model(player)
         }
     }
 

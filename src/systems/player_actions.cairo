@@ -18,6 +18,8 @@ pub trait IPlayerActions<T> {
     fn equip_starter(ref self: T, card_id: u32, role: felt252);
     fn unequip_starter(ref self: T, role: felt252);
     fn rename_club(ref self: T, new_name: felt252);
+    fn get_player(self: @T, wallet: starknet::ContractAddress) -> zapfc_contracts::models::PlayerRegistry;
+    fn get_formation(self: @T, wallet: starknet::ContractAddress) -> zapfc_contracts::models::FormationConfig;
     /// Mints a card to the given player.  In production, gated behind a coin
     /// purchase; here exposed directly for easy testing / airdrop.
     fn mint_card_to(ref self: T, receiver: starknet::ContractAddress, card_id: u32);
@@ -299,6 +301,14 @@ pub mod player_actions {
                 mission_type: mission.mission_type,
                 reward: mission.reward,
             });
+        }
+
+        fn get_player(self: @ContractState, wallet: ContractAddress) -> PlayerRegistry {
+            self.world_default().read_model(wallet)
+        }
+
+        fn get_formation(self: @ContractState, wallet: ContractAddress) -> FormationConfig {
+            self.world_default().read_model(wallet)
         }
     }
 

@@ -41,7 +41,7 @@ private_key = "0xc5b2fcab997346f3ea1c00b002ecf6f382c5f9c9659a3894eb783c5320f912"
 "dojo_starter-GameSession" = [
   "dojo_starter-game_actions",
 ]
-"dojo_starter-VRFRequest" = [
+"dojo_starter-ActiveGameSession" = [
   "dojo_starter-game_actions",
 ]
 "dojo_starter-DailyMission" = [

@@ -36,7 +36,7 @@ pub const FORMATION_LOW_541:     felt252 = 'low-541';
 
 // ── Sentinel values ───────────────────────────────────────────────────────────
 pub const NO_CARD:          u32 = 0;   // unset starter slot
-pub const NO_PENDING_ACTION: u8 = 255; // no action queued for VRF
+pub const NO_PENDING_ACTION: u8 = 255; // no action queued
 
 // ── Situation IDs (symmetric attack/defend reads) ─────────────────────────────
 pub const SITUATION_MIDFIELD_ATTACKING: u8 = 0;
